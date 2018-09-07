@@ -37,6 +37,8 @@ class HomeController: UIViewController, NIBBased, AlertViewController {
     
     func configView() {
         tracksTableView.register(cellType: HomeTableViewCell.self)
+
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

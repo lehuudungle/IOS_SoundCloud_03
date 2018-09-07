@@ -35,6 +35,8 @@
 		6FC4DFEE2142617C00020933 /* BaseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC4DFED2142617C00020933 /* BaseResult.swift */; };
 		6FC4DFF0214265D100020933 /* TrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC4DFEF214265D100020933 /* TrackListRequest.swift */; };
 		6FC4DFF3214266BB00020933 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC4DFF2214266BB00020933 /* URLs.swift */; };
+		6FED85C52148FC450094289C /* PopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FED85C32148FC450094289C /* PopupController.swift */; };
+		6FED85C62148FC450094289C /* PopupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FED85C42148FC450094289C /* PopupController.xib */; };
 		6FFD81E121460C2800BFFA58 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD81E021460C2800BFFA58 /* APIKey.swift */; };
 		6FFD81F1214621E700BFFA58 /* GenericHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD81EF214621E700BFFA58 /* GenericHeaderCell.swift */; };
 		6FFD81F2214621E700BFFA58 /* GenericHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FFD81F0214621E700BFFA58 /* GenericHeaderCell.xib */; };
@@ -78,6 +80,8 @@
 		6FC4DFED2142617C00020933 /* BaseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResult.swift; sourceTree = "<group>"; };
 		6FC4DFEF214265D100020933 /* TrackListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListRequest.swift; sourceTree = "<group>"; };
 		6FC4DFF2214266BB00020933 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		6FED85C32148FC450094289C /* PopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupController.swift; sourceTree = "<group>"; };
+		6FED85C42148FC450094289C /* PopupController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupController.xib; sourceTree = "<group>"; };
 		6FFD81E021460C2800BFFA58 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		6FFD81EF214621E700BFFA58 /* GenericHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericHeaderCell.swift; sourceTree = "<group>"; };
 		6FFD81F0214621E700BFFA58 /* GenericHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericHeaderCell.xib; sourceTree = "<group>"; };
@@ -336,9 +340,20 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		6FED85C22148FC1E0094289C /* PopupController */ = {
+			isa = PBXGroup;
+			children = (
+				6FED85C32148FC450094289C /* PopupController.swift */,
+				6FED85C42148FC450094289C /* PopupController.xib */,
+			);
+			name = PopupController;
+			path = Po;
+			sourceTree = "<group>";
+		};
 		6FFD81E72146176B00BFFA58 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				6FED85C22148FC1E0094289C /* PopupController */,
 				6F6EF53021475123009692D0 /* trackList */,
 				6FFD81E821461A8600BFFA58 /* HomeCollectionView */,
 				6F0818352140FA75008F6F5F /* HomeController.xib */,
@@ -451,6 +466,8 @@
 				6F0818372140FA75008F6F5F /* HomeController.xib in Resources */,
 				6F204334213FC21F00FF09DB /* Assets.xcassets in Resources */,
 				6FFD81F2214621E700BFFA58 /* GenericHeaderCell.xib in Resources */,
+
+				6FED85C62148FC450094289C /* PopupController.xib in Resources */,
 				6F6EF53521475D50009692D0 /* TracksByGenericController.xib in Resources */,
 				6F08183C2140FA8D008F6F5F /* SearchController.xib in Resources */,
 				6FFD81FB2146285C00BFFA58 /* CategoryCell.xib in Resources */,
@@ -531,6 +548,8 @@
 				6FC4DFF3214266BB00020933 /* URLs.swift in Sources */,
 				6F081847214103C3008F6F5F /* PersonalController.swift in Sources */,
 				6FFD81F1214621E700BFFA58 /* GenericHeaderCell.swift in Sources */,
+
+				6FED85C52148FC450094289C /* PopupController.swift in Sources */,
 				6F08184B214119DD008F6F5F /* NameControllerConstant.swift in Sources */,
 				6F08183B2140FA8D008F6F5F /* SearchController.swift in Sources */,
 				6FC4DFDA21425D2100020933 /* APIService.swift in Sources */,
