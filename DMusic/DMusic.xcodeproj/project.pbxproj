@@ -7,19 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0818362140FA75008F6F5F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0818342140FA75008F6F5F /* HomeController.swift */; };
+		6F0818372140FA75008F6F5F /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0818352140FA75008F6F5F /* HomeController.xib */; };
+		6F08183B2140FA8D008F6F5F /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0818392140FA8D008F6F5F /* SearchController.swift */; };
+		6F08183C2140FA8D008F6F5F /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F08183A2140FA8D008F6F5F /* SearchController.xib */; };
+		6F0818402140FB19008F6F5F /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F08183F2140FB19008F6F5F /* BaseNavigationController.swift */; };
+		6F0818432140FBAB008F6F5F /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0818422140FBAB008F6F5F /* UIColor+Extention.swift */; };
+		6F081847214103C3008F6F5F /* PersonalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F081845214103C3008F6F5F /* PersonalController.swift */; };
+		6F081848214103C3008F6F5F /* PersonalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F081846214103C3008F6F5F /* PersonalController.xib */; };
+		6F08184B214119DD008F6F5F /* NameControllerConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F08184A214119DD008F6F5F /* NameControllerConstant.swift */; };
 		6F20432D213FC21200FF09DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F20432C213FC21200FF09DB /* AppDelegate.swift */; };
 		6F204334213FC21F00FF09DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F204333213FC21F00FF09DB /* Assets.xcassets */; };
 		6F204337213FC21F00FF09DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F204335213FC21F00FF09DB /* LaunchScreen.storyboard */; };
 		6F204344213FC29200FF09DB /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F204343213FC29200FF09DB /* MainController.swift */; };
+		6FC4DFCF214213F500020933 /* UIViewController+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC4DFCE214213F500020933 /* UIViewController+Extenstion.swift */; };
+		72203BE932DF52A7BFB8E452 /* Pods_DMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6964451AC05B87DA296C125 /* Pods_DMusic.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F0818342140FA75008F6F5F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		6F0818352140FA75008F6F5F /* HomeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeController.xib; sourceTree = "<group>"; };
+		6F0818392140FA8D008F6F5F /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		6F08183A2140FA8D008F6F5F /* SearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
+		6F08183F2140FB19008F6F5F /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		6F0818422140FBAB008F6F5F /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
+		6F081845214103C3008F6F5F /* PersonalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalController.swift; sourceTree = "<group>"; };
+		6F081846214103C3008F6F5F /* PersonalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalController.xib; sourceTree = "<group>"; };
+		6F08184A214119DD008F6F5F /* NameControllerConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameControllerConstant.swift; sourceTree = "<group>"; };
 		6F204329213FC21200FF09DB /* DMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F20432C213FC21200FF09DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F204333213FC21F00FF09DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F204336213FC21F00FF09DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F204338213FC21F00FF09DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F204343213FC29200FF09DB /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		6FC4DFCE214213F500020933 /* UIViewController+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extenstion.swift"; sourceTree = "<group>"; };
+		7F46A2A9151931A9B2224B8D /* Pods-DMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DMusic.release.xcconfig"; path = "Pods/Target Support Files/Pods-DMusic/Pods-DMusic.release.xcconfig"; sourceTree = "<group>"; };
+		95FAFE60A8161D8BC6384DBE /* Pods-DMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DMusic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DMusic/Pods-DMusic.debug.xcconfig"; sourceTree = "<group>"; };
+		E6964451AC05B87DA296C125 /* Pods_DMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +51,97 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72203BE932DF52A7BFB8E452 /* Pods_DMusic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58056D52CF23192DEF53B152 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E6964451AC05B87DA296C125 /* Pods_DMusic.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6F0818322140E5AE008F6F5F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6F0818352140FA75008F6F5F /* HomeController.xib */,
+				6F08183A2140FA8D008F6F5F /* SearchController.xib */,
+				6F081846214103C3008F6F5F /* PersonalController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6F0818332140FA5F008F6F5F /* HomeController */ = {
+			isa = PBXGroup;
+			children = (
+				6F0818342140FA75008F6F5F /* HomeController.swift */,
+			);
+			path = HomeController;
+			sourceTree = "<group>";
+		};
+		6F0818382140FA81008F6F5F /* SearchController */ = {
+			isa = PBXGroup;
+			children = (
+				6F0818392140FA8D008F6F5F /* SearchController.swift */,
+			);
+			path = SearchController;
+			sourceTree = "<group>";
+		};
+		6F08183D2140FAE2008F6F5F /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				6F08184921411989008F6F5F /* Constant */,
+				6F0818412140FB8E008F6F5F /* Extension */,
+				6F08183E2140FAEB008F6F5F /* Base */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		6F08183E2140FAEB008F6F5F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				6F08183F2140FB19008F6F5F /* BaseNavigationController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		6F0818412140FB8E008F6F5F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6F0818422140FBAB008F6F5F /* UIColor+Extention.swift */,
+				6FC4DFCE214213F500020933 /* UIViewController+Extenstion.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		6F081844214103A2008F6F5F /* PersonalController */ = {
+			isa = PBXGroup;
+			children = (
+				6F081845214103C3008F6F5F /* PersonalController.swift */,
+			);
+			path = PersonalController;
+			sourceTree = "<group>";
+		};
+		6F08184921411989008F6F5F /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				6F08184A214119DD008F6F5F /* NameControllerConstant.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
 		6F204320213FC21200FF09DB = {
 			isa = PBXGroup;
 			children = (
 				6F20432B213FC21200FF09DB /* DMusic */,
 				6F20432A213FC21200FF09DB /* Products */,
+				81649E9407DBBCA63E6B4D85 /* Pods */,
+				58056D52CF23192DEF53B152 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,8 +156,10 @@
 		6F20432B213FC21200FF09DB /* DMusic */ = {
 			isa = PBXGroup;
 			children = (
+				6F0818322140E5AE008F6F5F /* Views */,
 				6F204340213FC26B00FF09DB /* Controllers */,
 				6F20433E213FC22600FF09DB /* Supporting file */,
+				6F08183D2140FAE2008F6F5F /* Lib */,
 			);
 			path = DMusic;
 			sourceTree = "<group>";
@@ -72,6 +178,9 @@
 		6F204340213FC26B00FF09DB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6F081844214103A2008F6F5F /* PersonalController */,
+				6F0818382140FA81008F6F5F /* SearchController */,
+				6F0818332140FA5F008F6F5F /* HomeController */,
 				6F204342213FC27800FF09DB /* MainController */,
 			);
 			path = Controllers;
@@ -85,6 +194,15 @@
 			path = MainController;
 			sourceTree = "<group>";
 		};
+		81649E9407DBBCA63E6B4D85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				95FAFE60A8161D8BC6384DBE /* Pods-DMusic.debug.xcconfig */,
+				7F46A2A9151931A9B2224B8D /* Pods-DMusic.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -92,9 +210,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F20433B213FC21F00FF09DB /* Build configuration list for PBXNativeTarget "DMusic" */;
 			buildPhases = (
+				BC3F7FCA580BB2139B25C36C /* [CP] Check Pods Manifest.lock */,
 				6F204325213FC21200FF09DB /* Sources */,
 				6F204326213FC21200FF09DB /* Frameworks */,
 				6F204327213FC21200FF09DB /* Resources */,
+				5A647267FCF2C633AF16780A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,19 +264,78 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F204337213FC21F00FF09DB /* LaunchScreen.storyboard in Resources */,
+				6F081848214103C3008F6F5F /* PersonalController.xib in Resources */,
+				6F0818372140FA75008F6F5F /* HomeController.xib in Resources */,
 				6F204334213FC21F00FF09DB /* Assets.xcassets in Resources */,
+				6F08183C2140FA8D008F6F5F /* SearchController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5A647267FCF2C633AF16780A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DMusic/Pods-DMusic-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DMusic/Pods-DMusic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC3F7FCA580BB2139B25C36C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DMusic-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6F204325213FC21200FF09DB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F0818432140FBAB008F6F5F /* UIColor+Extention.swift in Sources */,
 				6F204344213FC29200FF09DB /* MainController.swift in Sources */,
 				6F20432D213FC21200FF09DB /* AppDelegate.swift in Sources */,
+				6F0818362140FA75008F6F5F /* HomeController.swift in Sources */,
+				6F0818402140FB19008F6F5F /* BaseNavigationController.swift in Sources */,
+				6F081847214103C3008F6F5F /* PersonalController.swift in Sources */,
+				6F08184B214119DD008F6F5F /* NameControllerConstant.swift in Sources */,
+				6F08183B2140FA8D008F6F5F /* SearchController.swift in Sources */,
+				6FC4DFCF214213F500020933 /* UIViewController+Extenstion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,11 +469,13 @@
 		};
 		6F20433C213FC21F00FF09DB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95FAFE60A8161D8BC6384DBE /* Pods-DMusic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SHYTCSHP5R;
 				INFOPLIST_FILE = "DMusic/Supporting file/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,11 +489,13 @@
 		};
 		6F20433D213FC21F00FF09DB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F46A2A9151931A9B2224B8D /* Pods-DMusic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SHYTCSHP5R;
 				INFOPLIST_FILE = "DMusic/Supporting file/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
