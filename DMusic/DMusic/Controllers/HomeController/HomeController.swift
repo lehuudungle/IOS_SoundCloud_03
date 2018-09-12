@@ -37,6 +37,8 @@ class HomeController: UIViewController, NIBBased, AlertViewController {
     
     func configView() {
         tracksTableView.register(cellType: HomeTableViewCell.self)
+
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,6 +102,11 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as HomeTableViewCell
+        cell.didSelected = {(track) in
+            TrackTool.shared.setTrackMesseage(track: track)
+            let popUpController = PopupController.instantiate()
+            self.navigationController?.present(popUpController, animated: true, completion: nil)
+        }
         let infoTracks = tracksByGeneric[indexPath.section]
         cell.fill(infoTracks: infoTracks)
         return cell
