@@ -51,9 +51,9 @@ class Track: Mappable {
     var artwork_url = ""
     var duration:CUnsignedLong = 0
     var genre = "No Generic"
-    var id: CUnsignedLong = 0
+    var id: Int64 = 0
     var title = "No Name"
-    
+    var streamURL = ""
     required init?(map: Map) {
     }
     
@@ -63,5 +63,6 @@ class Track: Mappable {
         genre <- map["genre"]
         id <- map["id"]
         title <- map["title"]
+        streamURL <- map["streamURL"]
     }
 }

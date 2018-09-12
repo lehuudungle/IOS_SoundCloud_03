@@ -9,7 +9,12 @@
 import UIKit
 
 class MainController: UITabBarController {
+    
+    private struct Constant  {
+        static let heightTrackMessage: CGFloat = 60
+    }
     static let shared = MainController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let homeController = HomeController.instantiate()
@@ -39,13 +44,19 @@ class MainController: UITabBarController {
         self.viewControllers = [homeRootController,
                                 searchRootController,
                                 personalRootController]
+
+        let heightTabBar = self.tabBar.frame.height
+        TrackMessageView.shared.view.frame = CGRect(x: 0, y:ScreenSize.heightScreen - MainController.Constant.heightTrackMessage - heightTabBar, width: ScreenSize.widthScreen, height: MainController.Constant.heightTrackMessage)
+        self.view.addSubview(TrackMessageView.shared.view)
+        TrackMessageView.shared.view.isHidden = true
+        
         UITabBarItem.appearance()
             .setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.grayColor], for:.normal)
         UITabBarItem.appearance()
             .setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.black], for:.selected)
         self.tabBar.backgroundColor = .whiteSmoke
     }
-    
+   
     func setupForEachRootController(viewcontroller: UIViewController,
                                     navTitle: String, tabbarTitle: String,
                                     unSelectedImage: UIImage,

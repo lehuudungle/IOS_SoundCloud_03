@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct TitleImage {
     static let homeIcon = "home_icon"
@@ -22,3 +23,5 @@ struct TitleNavigator {
     static let SearchTitle = "Search"
     static let PersonaTitle = "Personal"
 }
+
+
