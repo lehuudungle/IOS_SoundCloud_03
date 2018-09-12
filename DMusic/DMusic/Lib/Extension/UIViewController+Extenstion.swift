@@ -25,3 +25,20 @@ extension NIBBased where Self: UIViewController {
         return Self.init(nibName: self.nibName, bundle: Bundle(for: self))
     }
 }
+
+extension UIViewController {
+    func add(_ child: UIViewController, frame: CGRect?) {
+        addChildViewController(child)
+        guard  let frame = frame else {return }
+        child.view.frame = frame
+        view.addSubview(child.view)
+        child.didMove(toParentViewController: self)
+    }
+    
+    func removeChild() {
+        willMove(toParentViewController: nil)
+        view.removeFromSuperview()
+        removeFromParentViewController()
+    }
+
+}

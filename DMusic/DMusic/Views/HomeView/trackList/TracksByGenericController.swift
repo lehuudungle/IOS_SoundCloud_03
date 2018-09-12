@@ -10,6 +10,17 @@ import UIKit
 import Reusable
 
 class TracksByGenericController: UIViewController, AlertViewController, NIBBased {
+
+    private struct Constant {
+        static let limit = 10
+        static let countGeneric = 6
+        static let countRows = 1
+        static let titleNavigation = "Home"
+        static let heightScreen = UIScreen.main.bounds.height
+        static let widthScreen = UIScreen.main.bounds.width
+        static let heightMessageTrack: CGFloat = 60
+    }
+    @IBOutlet private weak var genericTrackLabel: UILabel!
     @IBOutlet private weak var tracksTable: UITableView!
     
     var tracks = [InfoTrack]()
@@ -21,12 +32,24 @@ class TracksByGenericController: UIViewController, AlertViewController, NIBBased
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
+        let childMessageView = TrackMessageView.instantiate()
+        let heighTabBar = self.tabBarController!.tabBar.frame.size.height
+        let frameChild = CGRect(x: 0,
+                                y: Constant.heightScreen - heighTabBar - Constant.heightMessageTrack - 5 ,
+                                width: Constant.widthScreen,
+                                height: Constant.heightMessageTrack)
+        self.add(childMessageView,frame: frameChild)
     }
     
     func configView() {
-        self.title = linkURL.titleGeneric
+
+        genericTrackLabel.text = linkURL.titleGeneric
         tracksTable.register(cellType: TrackCell.self)
     }
+    @IBAction func back(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 extension TracksByGenericController: UITableViewDelegate, UITableViewDataSource {
