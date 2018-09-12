@@ -36,7 +36,7 @@ class SearchResultTracks: Mappable {
 
 class InfoTrack: Mappable {
     var track: Track!
-    var score: Int!
+    var score = 0
     
     required init?(map: Map) {
     }
@@ -48,11 +48,11 @@ class InfoTrack: Mappable {
 }
 
 class Track: Mappable {
-    var artwork_url: String!
-    var duration: CUnsignedLong!
-    var genre: String!
-    var id: CUnsignedLong!
-    var title: String!
+    var artwork_url = ""
+    var duration:CUnsignedLong = 0
+    var genre = "No Generic"
+    var id: CUnsignedLong = 0
+    var title = "No Name"
     
     required init?(map: Map) {
     }
