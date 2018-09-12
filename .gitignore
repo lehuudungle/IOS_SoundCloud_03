@@ -49,10 +49,7 @@ playground.xcworkspace
 
 Pods/
 
-.DS_Store/
-DMusic/DMusic/Lib/Constant/APIKey.swift
-DMusic/.DS_Store
-
+#.DS_Store
 # Carthageß
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
