@@ -9,7 +9,9 @@
 import UIKit
 
 class HomeController: UIViewController, NIBBased {
+    private let trackListRepository: TrackRepository = TrackRepositoryImpl(api: APIService.shared)
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
 }

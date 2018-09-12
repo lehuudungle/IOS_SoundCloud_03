@@ -50,6 +50,8 @@ playground.xcworkspace
 Pods/
 
 .DS_Store/
+DMusic/DMusic/Lib/Constant/APIKey.swift
+DMusic/.DS_Store
 
 # Carthageß
 #
