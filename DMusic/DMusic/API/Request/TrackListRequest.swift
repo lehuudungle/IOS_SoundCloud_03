@@ -9,12 +9,12 @@
 import Foundation
 
 class TrackListRequest: BaseRequest {
-    required init(limit: Int, offset: Int) {
+    required init(_ linkURL: LinkURL, limit: Int, offset: Int) {
         let body: [String: Any]  = [
             "limit": limit,
             "offset": offset
         ]
-        super.init(url: URLs.APIGenresUrl, requestType: .get, body: body)
+        super.init(url: URLs.getLinkGeneric(linkURL), requestType: .get, body: body)
     }
     
     required init(key: String?, limit: Int, offset: Int) {

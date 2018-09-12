@@ -10,7 +10,8 @@ import Foundation
 import ObjectMapper
 
 protocol TrackRepository {
-    func fetchListOfSongs(limit: Int, offset: Int, completion: @escaping (BaseResult<TracksResponse>) -> Void)
+
+    func fetchListOfSongs(linkURL: LinkURL, limit: Int, offset: Int, completion: @escaping (BaseResult<TracksResponse>) -> Void)
     
     func searchForSongsByKey(key: String?, limit: Int, offset: Int, completion: @escaping (BaseResult<SearchResultTracks>) -> Void)
 }
@@ -23,8 +24,8 @@ class TrackRepositoryImpl: TrackRepository {
         self.api = api
     }
     
-    func fetchListOfSongs(limit: Int, offset: Int, completion: @escaping (BaseResult<TracksResponse>) -> Void) {
-        let input = TrackListRequest(limit: limit, offset: offset)
+    func fetchListOfSongs(linkURL: LinkURL, limit: Int, offset: Int, completion: @escaping (BaseResult<TracksResponse>) -> Void) {
+        let input = TrackListRequest(linkURL, limit: limit, offset: offset)
         api.request(input: input, completion: { (object: TracksResponse?, error) in
             guard let error = error else {
                 if let object = object {

@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+class APIKey {
+    static let CliendId = "AJ4pxoFBchG36bmDxD5VwWzwlpDDbuYE"
+}
