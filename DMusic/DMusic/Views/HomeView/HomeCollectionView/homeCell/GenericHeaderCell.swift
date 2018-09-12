@@ -26,7 +26,7 @@ class GenericHeaderCell: UITableViewCell, NibLoadable {
     }
     
     func passDataCell(index: Int) {
-        linkGenenric = LinkURL.init(rawValue: index)!
+        linkGenenric = LinkURL(rawValue: index)!
         genericLabel.text = linkGenenric.titleGeneric
     }
     

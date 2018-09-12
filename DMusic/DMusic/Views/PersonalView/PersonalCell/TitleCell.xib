@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TitleCell" customModule="DMusic" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download" translatesAutoresizingMaskIntoConstraints="NO" id="41e-Hk-law">
+                        <rect key="frame" x="10" y="25" width="50" height="49.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="41e-Hk-law" secondAttribute="height" multiplier="1:1" id="Oeh-qC-Fbg"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N41-Ys-HhQ">
+                        <rect key="frame" x="80" y="36" width="105" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loT-DL-JpB">
+                        <rect key="frame" x="273" y="41" width="37" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="loT-DL-JpB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4WS-OJ-e2k"/>
+                    <constraint firstItem="41e-Hk-law" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="1:2" id="8TY-YR-Mfb"/>
+                    <constraint firstItem="N41-Ys-HhQ" firstAttribute="leading" secondItem="41e-Hk-law" secondAttribute="trailing" constant="20" id="IDX-oK-dXr"/>
+                    <constraint firstItem="41e-Hk-law" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Zfy-eM-J4y"/>
+                    <constraint firstItem="N41-Ys-HhQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kc5-Z0-iAM"/>
+                    <constraint firstItem="41e-Hk-law" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="u9l-0g-9ur"/>
+                    <constraint firstAttribute="trailing" secondItem="loT-DL-JpB" secondAttribute="trailing" constant="10" id="vHf-p2-auM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameLabel" destination="N41-Ys-HhQ" id="YY7-ow-1bh"/>
+                <outlet property="numberTrack" destination="loT-DL-JpB" id="NFm-jx-JrY"/>
+                <outlet property="titleImage" destination="41e-Hk-law" id="zhe-T8-5PB"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="download" width="32" height="32"/>
+    </resources>
+</document>
