@@ -8,6 +8,10 @@
 
 import UIKit
 import MBProgressHUD
+import Reusable
+protocol ShowTrackMessageDeletate {
+    func showTrackMessage()
+}
 
 class HomeController: UIViewController, NIBBased, AlertViewController {
     private struct Constant {
@@ -15,6 +19,9 @@ class HomeController: UIViewController, NIBBased, AlertViewController {
         static let countGeneric = 6
         static let countRows = 1
         static let titleNavigation = "Home"
+        static let heightScreen = UIScreen.main.bounds.height
+        static let widthScreen = UIScreen.main.bounds.width
+        static let heightMessageTrack: CGFloat = 60
     }
     
     @IBOutlet private weak var tracksTableView: UITableView!
@@ -37,6 +44,7 @@ class HomeController: UIViewController, NIBBased, AlertViewController {
     
     func configView() {
         tracksTableView.register(cellType: HomeTableViewCell.self)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,6 +108,26 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as HomeTableViewCell
+        cell.didSelected = {(track) in
+           /*
+             if model = nil shownew
+             else {
+             if id != shownew
+             else showold
+             }
+             */
+            let trackMessage = TrackTool.shared.trackMessage
+            if let trackModel = trackMessage.trackModel {
+                if trackModel.id == track.id {
+                    TrackMessageView.shared.showOldTrack()
+                    return
+                }
+            }
+            TrackTool.shared.setTrackMesseage(track: track)
+            let popUpController = PopupController.instantiate()
+            self.navigationController?.present(popUpController, animated: true, completion: nil)
+            
+        }
         let infoTracks = tracksByGeneric[indexPath.section]
         cell.fill(infoTracks: infoTracks)
         return cell

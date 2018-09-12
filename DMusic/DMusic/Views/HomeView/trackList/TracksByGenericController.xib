@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TracksByGenericController" customModule="DMusic" customModuleProvider="target">
             <connections>
+                <outlet property="genericTrackLabel" destination="aiE-TM-HPg" id="jHl-c8-6oW"/>
                 <outlet property="tracksTable" destination="Fq5-Yv-HCT" id="wu6-SC-iWz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,8 +22,36 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ii6-Nw-taQ">
+                    <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ALL Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiE-TM-HPg">
+                            <rect key="frame" x="138.5" y="18.5" width="98" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWT-pO-4a5">
+                            <rect key="frame" x="10" y="9" width="56" height="42"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="40" maxY="10"/>
+                            <state key="normal" image="leftArrow"/>
+                            <connections>
+                                <action selector="back:" destination="-1" eventType="touchUpInside" id="ka2-nB-3kA"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Gb0-Od-vZ9"/>
+                        <constraint firstItem="BWT-pO-4a5" firstAttribute="centerY" secondItem="ii6-Nw-taQ" secondAttribute="centerY" id="Wq5-1S-69d"/>
+                        <constraint firstItem="BWT-pO-4a5" firstAttribute="leading" secondItem="ii6-Nw-taQ" secondAttribute="leading" constant="10" id="dpr-Dw-KcO"/>
+                        <constraint firstItem="aiE-TM-HPg" firstAttribute="centerY" secondItem="ii6-Nw-taQ" secondAttribute="centerY" id="zX5-h0-bbW"/>
+                        <constraint firstItem="aiE-TM-HPg" firstAttribute="centerX" secondItem="ii6-Nw-taQ" secondAttribute="centerX" id="zYt-hI-8ar"/>
+                    </constraints>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fq5-Yv-HCT">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Mgf-1o-lj8"/>
@@ -32,12 +61,19 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="ii6-Nw-taQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9Sf-Sf-opb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Fq5-Yv-HCT" secondAttribute="trailing" id="K5g-GP-Fhg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Fq5-Yv-HCT" secondAttribute="bottom" id="UEl-Q4-QY3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ii6-Nw-taQ" secondAttribute="trailing" id="ZwZ-CI-2nL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="ii6-Nw-taQ" secondAttribute="top" id="aJ8-qW-uC2"/>
+                <constraint firstItem="Fq5-Yv-HCT" firstAttribute="top" secondItem="ii6-Nw-taQ" secondAttribute="bottom" constant="10" id="aiN-zm-See"/>
                 <constraint firstItem="Fq5-Yv-HCT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="brf-Mm-em8"/>
-                <constraint firstItem="Fq5-Yv-HCT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ixK-EH-3tn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="leftArrow" width="16" height="16"/>
+    </resources>
 </document>
