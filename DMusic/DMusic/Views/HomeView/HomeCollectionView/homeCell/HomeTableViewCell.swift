@@ -14,6 +14,7 @@ class HomeTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet private weak var itemCollectionView: UICollectionView!
     
     var tracks = [Track]()
+    var didSelected: ((_ track: Track) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,5 +51,10 @@ extension HomeTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
         let cell = collectionView.dequeueReusableCell(for: indexPath) as CategoryCell
         cell.fill(track: tracks[indexPath.row])
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let didSelected = didSelected {
+            didSelected(tracks[indexPath.row])
+        }
     }
 }

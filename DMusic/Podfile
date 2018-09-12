@@ -11,4 +11,5 @@ target 'DMusic' do
   pod 'Reusable'
   pod 'MBProgressHUD'
   pod 'SDWebImage'
+  pod 'EFAutoScrollLabel'
 end
