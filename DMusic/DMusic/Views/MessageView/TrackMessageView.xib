@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,13 +14,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackMessageView" customModule="DMusic" customModuleProvider="target">
             <connections>
-
                 <outlet property="artWorkImage" destination="vyo-dJ-c53" id="pGb-Un-xF5"/>
                 <outlet property="bottomTrackView" destination="LvU-wP-lWY" id="nVH-B9-8Kl"/>
                 <outlet property="nameTrackLabel" destination="ORR-lT-qhb" id="GUz-CY-nmV"/>
                 <outlet property="nextButton" destination="bbP-UL-bFc" id="c2S-yt-aJ9"/>
                 <outlet property="playButton" destination="0bV-1v-8cH" id="hAK-3O-1Wb"/>
                 <outlet property="preButton" destination="5Sl-D6-nU6" id="d5v-cW-31R"/>
+                <outlet property="progressView" destination="8Ru-wY-oWT" id="BIU-JB-j43"/>
                 <outlet property="view" destination="pRF-3Y-13d" id="2ZZ-y6-99C"/>
             </connections>
         </placeholder>
@@ -39,7 +38,7 @@
                                 <constraint firstAttribute="width" secondItem="vyo-dJ-c53" secondAttribute="height" multiplier="1:1" id="d7M-Rh-aj3"/>
                             </constraints>
                         </imageView>
-                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8Ru-wY-oWT">
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ru-wY-oWT">
                             <rect key="frame" x="0.0" y="0.0" width="410" height="2"/>
                             <color key="progressTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </progressView>
@@ -129,7 +128,6 @@
     <resources>
         <image name="artworks" width="300" height="300"/>
         <image name="nextPlay" width="32" height="32"/>
-
         <image name="pause" width="64" height="64"/>
         <image name="pre" width="32" height="32"/>
     </resources>
