@@ -46,7 +46,6 @@ class TrackTool: NSObject {
         let playerItem = AVPlayerItem(asset: asset,
                                       automaticallyLoadedAssetKeys: requiredAssetKeys)
         trackPlayer.replaceCurrentItem(with: playerItem)
-        playTrack()
     }
     
     func playTrack() {
@@ -60,7 +59,6 @@ class TrackTool: NSObject {
     
     func pauseTrack() {
         trackPlayer.pause()
-        trackMessage.isPlaying = false
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

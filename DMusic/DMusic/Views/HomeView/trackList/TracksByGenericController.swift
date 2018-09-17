@@ -32,6 +32,13 @@ class TracksByGenericController: UIViewController, AlertViewController, NIBBased
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
+        let childMessageView = TrackMessageView.instantiate()
+        let heighTabBar = self.tabBarController!.tabBar.frame.size.height
+        let frameChild = CGRect(x: 0,
+                                y: Constant.heightScreen - heighTabBar - Constant.heightMessageTrack - 5 ,
+                                width: Constant.widthScreen,
+                                height: Constant.heightMessageTrack)
+        self.add(childMessageView,frame: frameChild)
     }
     
     func configView() {

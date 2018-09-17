@@ -35,14 +35,8 @@ extension UIViewController {
         child.didMove(toParentViewController: self)
     }
     
-    func add(_ child: UIViewController) {
-        addChildViewController(child)
-        view.addSubview(child.view)
-        child.didMove(toParentViewController: self)
-    }
-    
-    func removeChild(_ child: UIViewController) {
-        willMove(toParentViewController: child)
+    func removeChild() {
+        willMove(toParentViewController: nil)
         view.removeFromSuperview()
         removeFromParentViewController()
     }
@@ -51,6 +45,6 @@ extension UIViewController {
 
 struct ScreenSize {
     static let heightScreen = UIScreen.main.bounds.height
-    static let widthScreen = UIScreen.main.bounds.width
+    static let widthScreen = UIScreen.main.bounds.height
+    
 }
-

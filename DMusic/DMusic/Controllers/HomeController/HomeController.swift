@@ -9,9 +9,6 @@
 import UIKit
 import MBProgressHUD
 import Reusable
-protocol ShowTrackMessageDeletate {
-    func showTrackMessage()
-}
 
 class HomeController: UIViewController, NIBBased, AlertViewController {
     private struct Constant {
@@ -40,6 +37,13 @@ class HomeController: UIViewController, NIBBased, AlertViewController {
         super.viewDidLoad()
         configView()
         downloadFristData()
+        let childMessageView = TrackMessageView.instantiate()
+        let heighTabBar = self.tabBarController!.tabBar.frame.size.height
+        let frameChild = CGRect(x: 0,
+                                y: Constant.heightScreen - heighTabBar - Constant.heightMessageTrack - 5 ,
+                                width: Constant.widthScreen,
+                                height: Constant.heightMessageTrack)
+        self.add(childMessageView,frame: frameChild)
     }
     
     func configView() {
@@ -109,24 +113,9 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as HomeTableViewCell
         cell.didSelected = {(track) in
-           /*
-             if model = nil shownew
-             else {
-             if id != shownew
-             else showold
-             }
-             */
-            let trackMessage = TrackTool.shared.trackMessage
-            if let trackModel = trackMessage.trackModel {
-                if trackModel.id == track.id {
-                    TrackMessageView.shared.showOldTrack()
-                    return
-                }
-            }
             TrackTool.shared.setTrackMesseage(track: track)
             let popUpController = PopupController.instantiate()
             self.navigationController?.present(popUpController, animated: true, completion: nil)
-            
         }
         let infoTracks = tracksByGeneric[indexPath.section]
         cell.fill(infoTracks: infoTracks)

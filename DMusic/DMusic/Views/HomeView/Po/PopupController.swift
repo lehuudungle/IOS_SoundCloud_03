@@ -25,32 +25,24 @@ class PopupController: UIViewController, NIBBased {
     @IBOutlet private weak var currentTimeLabel: UILabel!
     @IBOutlet private weak var totalTimeLabel: UILabel!
     @IBOutlet private weak var trackSlider: UISlider!
-    @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var pageController: UIPageControl!
     
-    
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageController: UIPageControl!
     var trackPlayer = TrackTool.shared.trackPlayer
     var trackMessage = TrackTool.shared.trackMessage
+    var isPlayer = false
     var playLayer: AVPlayerLayer!
     var popupTimer = Timer()
-    var showMessage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTrackDetails()
         TrackTool.shared.popUpDelegate = self
-        // if show track message
-        if showMessage {
-            
-            trackSlider.value = Float(CMTimeGetSeconds(trackMessage.currentTime) / CMTimeGetSeconds(trackMessage.totalTime))
-            currentTimeLabel.text = trackMessage.currentTime.convertCMTimeString
-            progressTimer()
-        }
     }
     
     func setupTrackDetails() {
         configAVPlayer()
-        currentTimeLabel.text = "00:00"
+        TrackTool.shared.playTrack()
     }
     
     func configAVPlayer() {
@@ -62,7 +54,6 @@ class PopupController: UIViewController, NIBBased {
         artWorkImage.sd_setShowActivityIndicatorView(true)
         artWorkImage.sd_setIndicatorStyle(.gray)
         artWorkImage.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "artworks"), options: [.progressiveDownload], completed: nil)
-        nameTrackLabel.text = trackModel.title
     }
     
     @IBAction func changeValueSlider(_ sender: Any) {
@@ -75,19 +66,19 @@ class PopupController: UIViewController, NIBBased {
         self.trackSlider.value = currentSecond / Float(totalSecond)
     }
     @IBAction func playAction(_ sender: Any) {
-        if trackMessage.isPlaying {
+        if isPlayer {
+            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            TrackTool.shared.playTrack()
+        } else {
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             TrackTool.shared.pauseTrack()
-            return
         }
-        playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        TrackTool.shared.playTrack()
+        isPlayer = !isPlayer
     }
     
     @IBAction func popViewAction(_ sender: Any) {
         popupTimer.invalidate()
-        TrackMessageView.shared.configView()
-    
+        TrackTool.shared.remoteOldAVPlayer()
         self.dismiss(animated: true, completion: nil)
     }
 }
@@ -95,7 +86,6 @@ class PopupController: UIViewController, NIBBased {
 extension PopupController: PopupControllerDelegate {
     
     func reallyPlayMusic() {
-        print("playButton: \(playPauseButton)")
         playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         setupSlider()
         progressTimer()
@@ -103,11 +93,10 @@ extension PopupController: PopupControllerDelegate {
     
     func setupSlider() {
         self.totalTimeLabel.text = trackMessage.totalTime.convertCMTimeString
-        self.currentTimeLabel.text = trackPlayer.currentItem?.currentTime().convertCMTimeString
+        self.currentTimeLabel.text = trackMessage.currentTime.convertCMTimeString
     }
     
     func progressTimer() {
-        self.totalTimeLabel.text = trackMessage.totalTime.convertCMTimeString
         popupTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(handerSider), userInfo: nil, repeats: true)
     }
     
