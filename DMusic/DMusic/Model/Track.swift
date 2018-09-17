@@ -49,12 +49,26 @@ class InfoTrack: Mappable {
 
 class Track: Mappable {
     var artwork_url = ""
-    var duration:CUnsignedLong = 0
+    var duration:Int64 = 0
     var genre = "No Generic"
     var id: Int64 = 0
     var title = "No Name"
     var streamURL = ""
+    var downloadURL = ""
+    var downloadLocal = ""
     required init?(map: Map) {
+    }
+    
+    init(artwork_url: String? = "",
+         duration: Int64? = 0,
+         genre: String? = "",
+         id: Int64 = 0,
+         title: String? = "No Name") {
+        self.artwork_url = artwork_url!
+        self.duration = duration!
+        self.genre = genre!
+        self.id = id
+        self.title = title!
     }
     
     func mapping(map: Map) {
@@ -64,5 +78,6 @@ class Track: Mappable {
         id <- map["id"]
         title <- map["title"]
         streamURL <- map["streamURL"]
+        downloadURL <- map["download_url"]
     }
 }

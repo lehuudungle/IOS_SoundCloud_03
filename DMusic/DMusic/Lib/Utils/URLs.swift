@@ -11,6 +11,7 @@ struct URLs {
     private static let APIBaseUrl = "https://api-v2.soundcloud.com"
     private static let APIBaseStreamURL = "https://api.soundcloud.com/tracks"
     private static let ComponentUrl = "/charts?kind=top&genre=soundcloud%3Agenres%3"
+    private static let APIDownloadURL = "http://api.soundcloud.com/tracks"
     public static let APISearchUrl = String(format: "%@%@&client_id=%@", APIBaseUrl, LinkURL.searchURL.rawValue, APIKey.CliendId)
     
     static func getLinkGeneric(_ linkURL: LinkURL) ->String {
@@ -18,6 +19,9 @@ struct URLs {
     }
     static func getStreamURL(id: Int64) -> String {
         return String(format: "%@/%@/stream?client_id=%@", APIBaseStreamURL,"\(id)", APIKey.CliendId)
+    }
+    static func getDownloadURL(id: Int64) -> String {
+        return String(format: "%@/%@/download?client_id=%@", APIDownloadURL,"\(id)", APIKey.CliendId)
     }
 }
 

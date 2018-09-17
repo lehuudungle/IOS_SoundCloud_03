@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +22,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_icon" translatesAutoresizingMaskIntoConstraints="NO" id="45P-en-VGJ">
-                        <rect key="frame" x="7" y="5" width="49.5" height="49.5"/>
+                        <rect key="frame" x="7" y="6" width="47.5" height="47.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="45P-en-VGJ" secondAttribute="height" multiplier="1:1" id="zqX-Jy-B7h"/>
                         </constraints>
@@ -33,33 +34,50 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="are-SV-Of2">
-                        <rect key="frame" x="66.5" y="11" width="243.5" height="13.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                        <rect key="frame" x="65" y="6" width="215" height="33.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CuA-Aq-hzu">
-                        <rect key="frame" x="66.5" y="35.5" width="28.5" height="13.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="11"/>
+                        <rect key="frame" x="64.5" y="28.5" width="32.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3or-sy-xYz" customClass="NFDownloadButton" customModule="NFDownloadButton">
+                        <rect key="frame" x="290" y="19" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="3or-sy-xYz" secondAttribute="height" multiplier="1:1" id="fJu-dp-DWZ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="initialColor">
+                                <color key="value" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="are-SV-Of2" firstAttribute="leading" secondItem="45P-en-VGJ" secondAttribute="trailing" constant="10" id="2YH-FB-ahl"/>
-                    <constraint firstItem="45P-en-VGJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="6KR-HU-T4g"/>
-                    <constraint firstAttribute="bottom" secondItem="45P-en-VGJ" secondAttribute="bottom" constant="5" id="96L-dU-uXe"/>
+                    <constraint firstAttribute="trailing" secondItem="3or-sy-xYz" secondAttribute="trailing" constant="10" id="D3t-aB-rRx"/>
+                    <constraint firstItem="3or-sy-xYz" firstAttribute="leading" secondItem="are-SV-Of2" secondAttribute="trailing" constant="10" id="EQo-nd-89x"/>
+                    <constraint firstItem="3or-sy-xYz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PB4-As-1v1"/>
                     <constraint firstItem="CuA-Aq-hzu" firstAttribute="leading" secondItem="are-SV-Of2" secondAttribute="leading" id="S4U-ig-4ts"/>
+                    <constraint firstItem="45P-en-VGJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Uv4-d3-swW"/>
+                    <constraint firstItem="are-SV-Of2" firstAttribute="top" secondItem="45P-en-VGJ" secondAttribute="top" id="Xnf-FA-K4q"/>
+                    <constraint firstItem="45P-en-VGJ" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="8/10" id="aHp-4P-Ex4"/>
                     <constraint firstItem="45P-en-VGJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="gkr-dG-R1O"/>
-                    <constraint firstItem="are-SV-Of2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="pIS-3z-QU1"/>
-                    <constraint firstAttribute="trailing" secondItem="are-SV-Of2" secondAttribute="trailing" constant="10" id="yw2-IA-1B9"/>
-                    <constraint firstAttribute="bottom" secondItem="CuA-Aq-hzu" secondAttribute="bottom" constant="10.5" id="zbK-7D-JhK"/>
+                    <constraint firstItem="CuA-Aq-hzu" firstAttribute="bottom" secondItem="45P-en-VGJ" secondAttribute="bottom" multiplier="5:6" id="i2D-Cl-Qdg"/>
                 </constraints>
             </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="3or-sy-xYz" firstAttribute="height" secondItem="njF-e1-oar" secondAttribute="height" multiplier="1/3" id="RNA-to-JzB"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="genericTrackLabel" destination="CuA-Aq-hzu" id="lSN-Du-7HT"/>
                 <outlet property="nameTrackLabel" destination="are-SV-Of2" id="cgK-Dl-bAN"/>
+                <outlet property="statusDownload" destination="3or-sy-xYz" id="Cwb-MW-xSK"/>
                 <outlet property="trackImage" destination="45P-en-VGJ" id="Ml5-oo-8X5"/>
             </connections>
         </tableViewCell>

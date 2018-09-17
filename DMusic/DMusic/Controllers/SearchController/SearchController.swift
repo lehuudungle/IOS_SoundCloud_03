@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchController: UIViewController, NIBBased {
+class SearchController: BaseUIViewcontroller, NIBBased {
     override func viewDidLoad() {
         super.viewDidLoad()
     }

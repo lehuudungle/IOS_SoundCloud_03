@@ -15,7 +15,7 @@ protocol ShowTrackMessageDeletate {
 }
 
 
-class HomeController: UIViewController, NIBBased, AlertViewController {
+class HomeController: BaseUIViewcontroller, NIBBased, AlertViewController {
     private struct Constant {
         static let limit = 10
         static let countGeneric = 6
@@ -46,12 +46,12 @@ class HomeController: UIViewController, NIBBased, AlertViewController {
     
     func configView() {
         tracksTableView.register(cellType: HomeTableViewCell.self)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.title = HomeController.Constant.titleNavigation
+        TrackTool.shared.isOnline = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -127,6 +127,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
                     return
                 }
             }
+            TrackTool.shared.isOnline = true
             TrackTool.shared.setTrackMesseage(track: track)
             let popUpController = PopupController.instantiate()
             self.navigationController?.present(popUpController, animated: true, completion: nil)

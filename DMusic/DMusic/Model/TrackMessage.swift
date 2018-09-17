@@ -14,4 +14,5 @@ class TrackMessage: NSObject {
     var currentTime = CMTime(seconds: 0, preferredTimescale: 1)
     var totalTime = CMTime(seconds: 0, preferredTimescale: 1)
     var isPlaying = false
+    var urlLocal = ""
 }

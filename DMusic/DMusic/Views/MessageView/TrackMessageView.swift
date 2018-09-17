@@ -17,7 +17,7 @@ class TrackMessageView: UIViewController {
         static let heightTrackMessage: CGFloat = 60
     }
     static let shared = TrackMessageView()
-    
+    var popupTimer = Timer()
     
     @IBOutlet private weak var nameTrackLabel: UILabel!
     @IBOutlet private weak var artWorkImage: UIImageView!
@@ -25,8 +25,11 @@ class TrackMessageView: UIViewController {
     @IBOutlet private weak var preButton: UIButton!
     @IBOutlet private weak var nextButton: UIButton!
     @IBOutlet private weak var playButton: UIButton!
+    @IBOutlet weak var progressView: UIProgressView!
     
     var trackMessage = TrackTool.shared.trackMessage
+    var trackAvPlayer = TrackTool.shared.trackPlayer
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -41,6 +44,15 @@ class TrackMessageView: UIViewController {
         artWorkImage.sd_setIndicatorStyle(.gray)
         artWorkImage.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "artworks"), options: [.progressiveDownload], completed: nil)
         updateStatusButton()
+        updateProgess()
+    }
+    
+    func updateProgess() {
+        popupTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(handerSider), userInfo: nil, repeats: true)
+    }
+    
+    @objc func handerSider() {
+        progressView.progress = Float(CMTimeGetSeconds(trackAvPlayer.currentTime()) / CMTimeGetSeconds(trackMessage.totalTime))
     }
     
     @IBAction func showPopUp(_ sender: Any) {
@@ -60,10 +72,13 @@ class TrackMessageView: UIViewController {
         if trackMessage.isPlaying {
             playButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             TrackTool.shared.pauseTrack()
+            popupTimer.invalidate()
             return
         }
         playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         TrackTool.shared.playTrack()
+        popupTimer.fire()
+        
         
     }
     
@@ -94,4 +109,5 @@ class TrackMessageView: UIViewController {
         nextButton.isUserInteractionEnabled = true
         preButton.isUserInteractionEnabled = true
     }
+    
 }

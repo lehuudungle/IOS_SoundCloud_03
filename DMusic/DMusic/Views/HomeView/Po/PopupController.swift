@@ -13,12 +13,15 @@ import AVKit
 import AVFoundation
 import SDWebImage
 
+import NFDownloadButton
+import CoreData
+
 protocol PopupControllerDelegate {
     func reallyPlayMusic()
     func updateInfoTrackDetail()
 }
 
-class PopupController: UIViewController, NIBBased {
+class PopupController: BaseUIViewcontroller, NIBBased {
     
     @IBOutlet private weak var playPauseButton: UIButton!
     @IBOutlet private weak var artWorkImage: UIImageView!
@@ -30,6 +33,9 @@ class PopupController: UIViewController, NIBBased {
     @IBOutlet private weak var pageController: UIPageControl!
     @IBOutlet private weak var preButton: UIButton!
     @IBOutlet private weak var nextButton: UIButton!
+    @IBOutlet private weak var shuffleButton: UIButton!
+    @IBOutlet private weak var loopButton: UIButton!
+    @IBOutlet private weak var downloadTrack: NFDownloadButton!
     
     var trackPlayer = TrackTool.shared.trackPlayer
     var trackMessage = TrackTool.shared.trackMessage
@@ -45,13 +51,16 @@ class PopupController: UIViewController, NIBBased {
             }
         }
     }
-    @IBOutlet weak var shuffleButton: UIButton!
-    @IBOutlet weak var loopButton: UIButton!
+    private let trackListRepository: TrackRepository = TrackRepositoryImpl(api: APIService.shared)
+    private var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var fetchedRC: NSFetchedResultsController<DownloadTrackData>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTrackDetails()
         TrackTool.shared.popUpDelegate = self
-        
+        updateStatusLoop()
         // if show track message
         if showMessage {
             updateInfoTrackDetail()
@@ -109,6 +118,24 @@ class PopupController: UIViewController, NIBBased {
         artWorkImage.sd_setShowActivityIndicatorView(true)
         artWorkImage.sd_setIndicatorStyle(.gray)
         artWorkImage.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "artworks"), options: [.progressiveDownload], completed: nil)
+        downloadTrack.isHidden = trackModel.downloadURL.isEmpty ? true : false
+        downloadTrack.downloadState = .toDownload
+        updateStatusDownload()
+    }
+    
+    func updateStatusDownload() {
+        let request = DownloadTrackData.fetchRequest() as NSFetchRequest<DownloadTrackData>
+        do {
+            guard let trackModel = trackMessage.trackModel else { return }
+            let result = try context.fetch(request)
+            for data in result as [DownloadTrackData] {
+                if data.id == trackModel.id {
+                    downloadTrack.downloadState = .downloaded
+                }
+            }
+        } catch {
+            print("error coredata")
+        }
     }
     
     @IBAction func changeValueSlider(_ sender: Any) {
@@ -190,8 +217,40 @@ class PopupController: UIViewController, NIBBased {
         }
     }
     
-}
 
+    @IBAction func changeState(_ sender: NFDownloadButton) {
+        
+        guard let trackModel = trackMessage.trackModel else { return }
+        if sender.downloadState == .toDownload {
+            sender.downloadState = .willDownload
+            
+            let filePathTrack = self.getSaveFileUrl(idTrack: "\(trackModel.id)")
+            trackListRepository.downloadForSong(idTrack: trackModel.id,
+                                                saveURL: filePathTrack,
+                                                dowloadProgress: { (numberProgress) in
+                                                    print("numberP: \(numberProgress)")
+                                                    self.downloadTrack.downloadPercent = CGFloat(numberProgress)
+            }, completion: {
+                print("download thanh cong")
+                self.saveTrack(filePathTrack)
+            })
+        } else if sender.downloadState == .downloaded {
+            
+            sender.downloadState = .toDownload
+            
+        }
+    }
+    
+    func getSaveFileUrl(idTrack: String) -> URL {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let nameUrl = URL(string: idTrack)
+        let fileURL = documentsURL.appendingPathComponent((nameUrl!.lastPathComponent)).appendingPathExtension("mp3")
+        print("duong dan: \(fileURL.absoluteString)")
+        return fileURL;
+    }
+    
+}
+// MARK: PopupControllerDelegate
 extension PopupController: PopupControllerDelegate {
     
     func reallyPlayMusic() {
@@ -202,7 +261,6 @@ extension PopupController: PopupControllerDelegate {
         nextButton.isUserInteractionEnabled = true
         preButton.isUserInteractionEnabled = true
     }
-    
     func progressTimer() {
         popupTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(handerSider), userInfo: nil, repeats: true)
     }
@@ -212,7 +270,8 @@ extension PopupController: PopupControllerDelegate {
             return
         }
         self.trackSlider.value = Float(CMTimeGetSeconds(trackPlayer.currentItem!.currentTime()) / CMTimeGetSeconds(trackMessage.totalTime))
-            self.currentTimeLabel.text = trackPlayer.currentItem?.currentTime().convertCMTimeString
+
+        self.currentTimeLabel.text = trackPlayer.currentItem?.currentTime().convertCMTimeString
     }
 }
 
@@ -224,6 +283,43 @@ extension PopupController: UIScrollViewDelegate {
     }
 }
 
+// Download Music
+
+extension PopupController {
+    func saveTrack(_ saveURL: URL) {
+        let downloadData = DownloadTrackData(entity: DownloadTrackData.entity(), insertInto: context)
+        guard let trackModel = trackMessage.trackModel else { return }
+        downloadData.artwork_url = trackModel.artwork_url
+        downloadData.duration = Int64(trackModel.duration)
+        downloadData.id = trackModel.id
+        downloadData.url_local = "\(saveURL)"
+        downloadData.title = trackModel.title
+        downloadData.genre = trackModel.genre
+        appDelegate.saveContext()
+    }
+}
+
+extension PopupController {
+    override func remoteControlReceived(with event: UIEvent?) {
+        if let event  = event  {
+            if event.type == .remoteControl {
+                switch event.subtype {
+                case .remoteControlPlay:
+                    TrackTool.shared.playTrack()
+                case .remoteControlPause:
+                    TrackTool.shared.pauseTrack()
+                case .remoteControlNextTrack:
+                    TrackTool.shared.nextTrack()
+                case .remoteControlPreviousTrack:
+                    TrackTool.shared.previousTrack()
+                default:
+                    print("Not display")
+                }
+
+            }
+        }
+    }
+}
 
 enum StatusLoop: Int {
     case LoopAll, LoopOne, Shuffle
