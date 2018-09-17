@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DownloadTrackData" representedClassName="DownloadTrackData" syncable="YES">
+        <attribute name="artwork_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="genre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url_local" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DownloadTrackData" positionX="-54" positionY="18" width="128" height="135"/>
+    </elements>
+</model>

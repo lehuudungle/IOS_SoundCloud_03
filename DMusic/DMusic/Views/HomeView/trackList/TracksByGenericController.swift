@@ -9,7 +9,7 @@
 import UIKit
 import Reusable
 
-class TracksByGenericController: UIViewController, AlertViewController, NIBBased {
+class TracksByGenericController: BaseUIViewcontroller, AlertViewController, NIBBased {
 
     private struct Constant {
         static let limit = 10
@@ -32,13 +32,6 @@ class TracksByGenericController: UIViewController, AlertViewController, NIBBased
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
-        let childMessageView = TrackMessageView.shared
-        let heighTabBar = self.tabBarController!.tabBar.frame.size.height
-        let frameChild = CGRect(x: 0,
-                                y: Constant.heightScreen - heighTabBar - Constant.heightMessageTrack - 5 ,
-                                width: Constant.widthScreen,
-                                height: Constant.heightMessageTrack)
-        self.add(childMessageView,frame: frameChild)
     }
     
     func configView() {
@@ -75,9 +68,56 @@ extension TracksByGenericController: UITableViewDelegate, UITableViewDataSource 
             case .success(let trackResponse):
                 guard let infoTracks = trackResponse?.collection else { return }
                 self.tracks += infoTracks
+                // update TrackTool
+                print("loadMore")
+                let trackArray = self.tracks.map({ (value) in
+                    return value.track!
+                })
+                TrackTool.shared.tracks = trackArray
                 self.tracksTable.reloadData()
             case .failure(let error):
                 self.showErrorAlert(message: error?.errorMessage)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let trackArray = tracks.map({ (value) in
+            return value.track!
+        })
+        let trackItem = trackArray[indexPath.row]
+        TrackTool.shared.tracks = trackArray
+        let trackMessage = TrackTool.shared.trackMessage
+        if let trackModel = trackMessage.trackModel {
+            if trackModel.id == trackItem.id {
+                TrackMessageView.shared.showOldTrack()
+                return
+            }
+        }
+        TrackTool.shared.isOnline = true
+        TrackTool.shared.setTrackMesseage(track: trackItem)
+        let popUpController = PopupController.instantiate()
+        self.navigationController?.present(popUpController, animated: true, completion: nil)
+    }
+}
+
+extension TracksByGenericController {
+    override func remoteControlReceived(with event: UIEvent?) {
+        if let event  = event  {
+            if event.type == .remoteControl {
+                switch event.subtype {
+                case .remoteControlPlay:
+                    TrackTool.shared.playTrack()
+                case .remoteControlPause:
+                    TrackTool.shared.pauseTrack()
+                case .remoteControlNextTrack:
+                    TrackTool.shared.nextTrack()
+                case .remoteControlPreviousTrack:
+                    TrackTool.shared.previousTrack()
+                default:
+                    print("Not display")
+                }
+                
             }
         }
     }

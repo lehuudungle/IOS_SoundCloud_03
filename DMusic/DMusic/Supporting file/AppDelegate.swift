@@ -7,15 +7,43 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "DMusicData")
+        container.loadPersistentStores(completionHandler: {
+            (storeDescription, error) in
+            print(storeDescription)
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().tintColor = .black
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = MainController.shared
         self.window?.makeKeyAndVisible()
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white], for: .normal)
         return true
+    }
+    
+    func saveContext() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let err = error as NSError
+                fatalError("Unresolved errror \(err), \(err.userInfo)")
+            }
+        }
     }
 }
