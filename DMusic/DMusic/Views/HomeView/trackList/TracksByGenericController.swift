@@ -32,7 +32,7 @@ class TracksByGenericController: UIViewController, AlertViewController, NIBBased
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
-        let childMessageView = TrackMessageView.instantiate()
+        let childMessageView = TrackMessageView.shared
         let heighTabBar = self.tabBarController!.tabBar.frame.size.height
         let frameChild = CGRect(x: 0,
                                 y: Constant.heightScreen - heighTabBar - Constant.heightMessageTrack - 5 ,
@@ -62,9 +62,9 @@ extension TracksByGenericController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let fetchNextPage = (pageOffset + 1) * limit - 1 == indexPath.row
+        let fetchNextPage = pageOffset + limit - 1 == indexPath.row
         if fetchNextPage {
-            self.pageOffset += 1
+            self.pageOffset += limit
             loadMoreData()
         }
     }

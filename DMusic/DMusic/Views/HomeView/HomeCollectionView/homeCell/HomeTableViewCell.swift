@@ -39,6 +39,7 @@ class HomeTableViewCell: UITableViewCell, NibReusable {
             return infoTracks.track
         }
         itemCollectionView.reloadData()
+        
     }
 }
 

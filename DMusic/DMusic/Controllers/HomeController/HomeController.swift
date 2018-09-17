@@ -10,12 +10,18 @@ import UIKit
 import MBProgressHUD
 import Reusable
 
+protocol ShowTrackMessageDeletate {
+    func showTrackMessage()
+}
+
+
 class HomeController: UIViewController, NIBBased, AlertViewController {
     private struct Constant {
         static let limit = 10
         static let countGeneric = 6
         static let countRows = 1
         static let titleNavigation = "Home"
+
         static let heightScreen = UIScreen.main.bounds.height
         static let widthScreen = UIScreen.main.bounds.width
         static let heightMessageTrack: CGFloat = 60
@@ -32,18 +38,10 @@ class HomeController: UIViewController, NIBBased, AlertViewController {
                      LinkURL.ambientURL,
                      LinkURL.classicalURL,
                      LinkURL.countryURL]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
         downloadFristData()
-        let childMessageView = TrackMessageView.instantiate()
-        let heighTabBar = self.tabBarController!.tabBar.frame.size.height
-        let frameChild = CGRect(x: 0,
-                                y: Constant.heightScreen - heighTabBar - Constant.heightMessageTrack - 5 ,
-                                width: Constant.widthScreen,
-                                height: Constant.heightMessageTrack)
-        self.add(childMessageView,frame: frameChild)
     }
     
     func configView() {
@@ -92,6 +90,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         let headerView = GenericHeaderCell.loadFromNib()
         headerView.passDataCell(index: section)
         headerView.seeAll = {(linkGenenric) in
+            UIApplication.shared.keyWindow?.removeFromSuperview()
             let trackListController = TracksByGenericController.instantiate()
             if let firstTracks = self.tracksByGeneric[linkGenenric.rawValue] {
                 trackListController.tracks += firstTracks
@@ -113,9 +112,25 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as HomeTableViewCell
         cell.didSelected = {(track) in
+
+            print("indexPath:\(indexPath.section)")
+            let infoTrackArray: [InfoTrack] = self.tracksByGeneric[indexPath.section]!
+            let tracks = infoTrackArray.map({ (value) in
+                return value.track!
+            })
+            TrackTool.shared.tracks = tracks
+            print("track: \(tracks[0].title)")
+            let trackMessage = TrackTool.shared.trackMessage
+            if let trackModel = trackMessage.trackModel {
+                if trackModel.id == track.id {
+                    TrackMessageView.shared.showOldTrack()
+                    return
+                }
+            }
             TrackTool.shared.setTrackMesseage(track: track)
             let popUpController = PopupController.instantiate()
             self.navigationController?.present(popUpController, animated: true, completion: nil)
+            
         }
         let infoTracks = tracksByGeneric[indexPath.section]
         cell.fill(infoTracks: infoTracks)
