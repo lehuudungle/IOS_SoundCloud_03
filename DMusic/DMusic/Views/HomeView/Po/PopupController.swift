@@ -36,6 +36,8 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     @IBOutlet private weak var shuffleButton: UIButton!
     @IBOutlet private weak var loopButton: UIButton!
     @IBOutlet private weak var downloadTrack: NFDownloadButton!
+
+
     
     var trackPlayer = TrackTool.shared.trackPlayer
     var trackMessage = TrackTool.shared.trackMessage
@@ -69,7 +71,6 @@ class PopupController: BaseUIViewcontroller, NIBBased {
             setupSlider()
             progressTimer()
         }
-        
     }
     
     func updateStatusLoop() {
@@ -147,6 +148,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         self.currentTimeLabel.text = seeToTime.convertCMTimeString
         self.trackSlider.value = currentSecond / Float(totalSecond)
     }
+    
     @IBAction func playAction(_ sender: Any) {
         
         if trackMessage.isPlaying {
@@ -223,22 +225,18 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         guard let trackModel = trackMessage.trackModel else { return }
         if sender.downloadState == .toDownload {
             sender.downloadState = .willDownload
-            
-            let filePathTrack = self.getSaveFileUrl(idTrack: "\(trackModel.id)")
-            trackListRepository.downloadForSong(idTrack: trackModel.id,
-                                                saveURL: filePathTrack,
-                                                dowloadProgress: { (numberProgress) in
-                                                    print("numberP: \(numberProgress)")
-                                                    self.downloadTrack.downloadPercent = CGFloat(numberProgress)
-            }, completion: {
-                print("download thanh cong")
-                self.saveTrack(filePathTrack)
-            })
+            DownloadCenter().getTrackFromServer()
+            NotificationCenter.default.addObserver(self, selector: #selector(self.updatePercenDownload(notification:)), name: Notification.Name("percentDownload"), object: nil)
         } else if sender.downloadState == .downloaded {
             
             sender.downloadState = .toDownload
             
         }
+    }
+    
+    @objc func updatePercenDownload(notification: Notification) {
+        let userInfo = notification.userInfo as! [String: Double]
+        downloadTrack.downloadPercent = CGFloat(userInfo["percentDownload"]!)
     }
     
     func getSaveFileUrl(idTrack: String) -> URL {

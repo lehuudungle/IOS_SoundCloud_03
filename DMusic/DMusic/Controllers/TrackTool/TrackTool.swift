@@ -50,6 +50,7 @@ class TrackTool: NSObject {
             print(error)
             return
         }
+
     }
     
     func setTrackMesseage(track: Track) {

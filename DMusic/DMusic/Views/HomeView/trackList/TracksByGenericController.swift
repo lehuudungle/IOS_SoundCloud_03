@@ -51,6 +51,9 @@ extension TracksByGenericController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as TrackCell
         cell.fill(track: tracks[indexPath.row].track)
+        cell.updatePercent = { () in
+            self.tracksTable.reloadData()
+        }
         return cell 
     }
     

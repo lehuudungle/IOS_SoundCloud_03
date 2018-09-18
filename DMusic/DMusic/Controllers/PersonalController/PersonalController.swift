@@ -13,12 +13,17 @@ class PersonalController: BaseUIViewcontroller, NIBBased {
     
     @IBOutlet private weak var personalTable: UITableView!
     
-    var titleImage = [#imageLiteral(resourceName: "download"), #imageLiteral(resourceName: "shareblack")]
-    var nameCell = ["Download", "Share"]
+    var titleImage = [#imageLiteral(resourceName: "download")]
+    var nameCell = ["Download"]
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     override func viewDidLoad() {
         super.viewDidLoad()
         personalTable.register(cellType: TitleCell.self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        personalTable.reloadData()
     }
 }
 

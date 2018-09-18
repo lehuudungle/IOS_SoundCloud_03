@@ -24,6 +24,6 @@ class TrackListRequest: BaseRequest {
             "limit": limit,
             "offset": offset
         ]
-        super.init(url: URLs.APISearchUrl, requestType: .get, body: body)
+        super.init(url: URLs.getSearchURL(), requestType: .get, body: body)
     }
 }

@@ -23,7 +23,7 @@ class TracksResponse: Mappable {
 
 class SearchResultTracks: Mappable {
     var collection = [Track]()
-    var total_results: CUnsignedLong!
+    var total_results: Int64!
     
     required init?(map: Map) {
     }

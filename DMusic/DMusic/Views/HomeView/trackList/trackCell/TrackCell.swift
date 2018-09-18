@@ -12,6 +12,11 @@ import NFDownloadButton
 import CoreData
 
 class TrackCell: UITableViewCell, NibReusable {
+    private struct Constant {
+        static let defaultGeneric = "No Generic"
+        static let defaultTitleTrack = "No Track"
+        static let defaultImage = #imageLiteral(resourceName: "personal_icon")
+    }
     
     @IBOutlet private weak var trackImage: UIImageView!
     @IBOutlet private weak var nameTrackLabel: UILabel!
@@ -20,12 +25,9 @@ class TrackCell: UITableViewCell, NibReusable {
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var fetchedRC: NSFetchedResultsController<DownloadTrackData>!
-    
-    private struct Constant {
-        static let defaultGeneric = "No Generic"
-        static let defaultTitleTrack = "No Track"
-        static let defaultImage = #imageLiteral(resourceName: "personal_icon")
-    }
+    var updatePercent: (() -> ())?
+    private let trackListRepository: TrackRepository = TrackRepositoryImpl(api: APIService.shared)
+    var trackCell = Track()
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -36,8 +38,10 @@ class TrackCell: UITableViewCell, NibReusable {
     
     func fill(track: Track) {
         clearData()
+        trackCell = track
         self.genericTrackLabel.text = track.genre
         nameTrackLabel.text = track.title
+    
         if let url = URL(string: track.artwork_url) {
             self.trackImage.sd_setShowActivityIndicatorView(true)
             self.trackImage.sd_setIndicatorStyle(.gray)
@@ -61,13 +65,34 @@ class TrackCell: UITableViewCell, NibReusable {
                 print("error: \(error)")
             }
         }
+         NotificationCenter.default.addObserver(self, selector: #selector(self.updatePercenDownload(notification:)), name: Notification.Name("percentDownload"), object: nil)
 
     }
     
+    @IBAction func downloadAction(_ sender: NFDownloadButton) {
+        /*
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updatePercenDownload(notification:)), name: Notification.Name("percentDownload"), object: nil)
+ */
+    }
+    
+    @objc func updatePercenDownload(notification: Notification) {
+//       let trackMessage = DownloadCenter.shared.trackMessage
+        let userInfo = notification.userInfo as! [String: Double]
+//        guard let trackModel = Int64(userInfo["idTrack"]!) else { return }
+        let trackId = Int64(userInfo["idTrack"]!)
+        if trackCell.id == trackId {
+            print("trackId: \(trackId)")
+            print("download cell: \(userInfo["percentDownload"]!)")
+            statusDownload.downloadPercent = CGFloat(userInfo["percentDownload"]!)
+        }
+
+    }
+    
+    
     func clearData() {
-        self.genericTrackLabel.text = TrackCell.Constant.defaultGeneric
-        self.nameTrackLabel.text = TrackCell.Constant.defaultTitleTrack
+        self.genericTrackLabel.text = ""
+        self.nameTrackLabel.text = ""
         self.trackImage.image = TrackCell.Constant.defaultImage
-        statusDownload.isHidden = true
+        //statusDownload.isHidden = true
     }
 }
