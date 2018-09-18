@@ -15,10 +15,10 @@
 		05223AD0214ECA54007863BF /* DetailPersonalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05223ACE214ECA54007863BF /* DetailPersonalController.xib */; };
 		05223AD2214ED4F8007863BF /* DownloadTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05223AD1214ED4F8007863BF /* DownloadTrack.swift */; };
 		0545A08B214E5CAD00443E98 /* DMusicData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0545A089214E5CAD00443E98 /* DMusicData.xcdatamodeld */; };
+		05BB30D7215006B900021172 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB30D5215006B900021172 /* SearchController.swift */; };
+		05BB30D8215006B900021172 /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05BB30D6215006B900021172 /* SearchController.xib */; };
 		6F0818362140FA75008F6F5F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0818342140FA75008F6F5F /* HomeController.swift */; };
 		6F0818372140FA75008F6F5F /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0818352140FA75008F6F5F /* HomeController.xib */; };
-		6F08183B2140FA8D008F6F5F /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0818392140FA8D008F6F5F /* SearchController.swift */; };
-		6F08183C2140FA8D008F6F5F /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F08183A2140FA8D008F6F5F /* SearchController.xib */; };
 		6F0818402140FB19008F6F5F /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F08183F2140FB19008F6F5F /* BaseNavigationController.swift */; };
 		6F0818432140FBAB008F6F5F /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0818422140FBAB008F6F5F /* UIColor+Extention.swift */; };
 		6F081847214103C3008F6F5F /* PersonalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F081845214103C3008F6F5F /* PersonalController.swift */; };
@@ -35,6 +35,8 @@
 		6F6EF53521475D50009692D0 /* TracksByGenericController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F6EF53321475D50009692D0 /* TracksByGenericController.xib */; };
 		6F6EF53921475E25009692D0 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6EF53721475E25009692D0 /* TrackCell.swift */; };
 		6F6EF53A21475E25009692D0 /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F6EF53821475E25009692D0 /* TrackCell.xib */; };
+		6FABDE68215383DA005976D4 /* PlayListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABDE66215383DA005976D4 /* PlayListCell.swift */; };
+		6FABDE69215383DA005976D4 /* PlayListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FABDE67215383DA005976D4 /* PlayListCell.xib */; };
 		6FC4DFCF214213F500020933 /* UIViewController+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC4DFCE214213F500020933 /* UIViewController+Extenstion.swift */; };
 		6FC4DFD62142171800020933 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC4DFD52142171800020933 /* Track.swift */; };
 		6FC4DFDA21425D2100020933 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC4DFD921425D2100020933 /* APIService.swift */; };
@@ -48,6 +50,7 @@
 		6FC4DFF3214266BB00020933 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC4DFF2214266BB00020933 /* URLs.swift */; };
 		6FD6C9A6214A9635003501A4 /* TrackMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD6C9A4214A9635003501A4 /* TrackMessageView.swift */; };
 		6FD6C9A7214A9635003501A4 /* TrackMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FD6C9A5214A9635003501A4 /* TrackMessageView.xib */; };
+		6FE364262150AD060041D23D /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE364252150AD060041D23D /* DownloadCenter.swift */; };
 		6FED85C52148FC450094289C /* PopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FED85C32148FC450094289C /* PopupController.swift */; };
 		6FED85C9214938FC0094289C /* TrackTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FED85C8214938FC0094289C /* TrackTool.swift */; };
 		6FFD81F1214621E700BFFA58 /* GenericHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD81EF214621E700BFFA58 /* GenericHeaderCell.swift */; };
@@ -70,10 +73,10 @@
 		05223ACE214ECA54007863BF /* DetailPersonalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPersonalController.xib; sourceTree = "<group>"; };
 		05223AD1214ED4F8007863BF /* DownloadTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTrack.swift; sourceTree = "<group>"; };
 		0545A08A214E5CAD00443E98 /* DMusicData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DMusicData.xcdatamodel; sourceTree = "<group>"; };
+		05BB30D5215006B900021172 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		05BB30D6215006B900021172 /* SearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
 		6F0818342140FA75008F6F5F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		6F0818352140FA75008F6F5F /* HomeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeController.xib; sourceTree = "<group>"; };
-		6F0818392140FA8D008F6F5F /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
-		6F08183A2140FA8D008F6F5F /* SearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
 		6F08183F2140FB19008F6F5F /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		6F0818422140FBAB008F6F5F /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
 		6F081845214103C3008F6F5F /* PersonalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalController.swift; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 		6F6EF53321475D50009692D0 /* TracksByGenericController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TracksByGenericController.xib; sourceTree = "<group>"; };
 		6F6EF53721475E25009692D0 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		6F6EF53821475E25009692D0 /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
+		6FABDE66215383DA005976D4 /* PlayListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListCell.swift; sourceTree = "<group>"; };
+		6FABDE67215383DA005976D4 /* PlayListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayListCell.xib; sourceTree = "<group>"; };
 		6FC4DFCE214213F500020933 /* UIViewController+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extenstion.swift"; sourceTree = "<group>"; };
 		6FC4DFD52142171800020933 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		6FC4DFD921425D2100020933 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -105,6 +110,7 @@
 		6FC4DFF2214266BB00020933 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		6FD6C9A4214A9635003501A4 /* TrackMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMessageView.swift; sourceTree = "<group>"; };
 		6FD6C9A5214A9635003501A4 /* TrackMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackMessageView.xib; sourceTree = "<group>"; };
+		6FE364252150AD060041D23D /* DownloadCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadCenter.swift; sourceTree = "<group>"; };
 		6FED85C32148FC450094289C /* PopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupController.swift; sourceTree = "<group>"; };
 		6FED85C8214938FC0094289C /* TrackTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTool.swift; sourceTree = "<group>"; };
 		6FFD81EF214621E700BFFA58 /* GenericHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericHeaderCell.swift; sourceTree = "<group>"; };
@@ -170,6 +176,14 @@
 			path = DetailPersonal;
 			sourceTree = "<group>";
 		};
+		05BB30D22150017700021172 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				05BB30D6215006B900021172 /* SearchController.xib */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
 		58056D52CF23192DEF53B152 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,9 +195,9 @@
 		6F0818322140E5AE008F6F5F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				05BB30D22150017700021172 /* SearchView */,
 				6FD6C99F214A840A003501A4 /* MessageView */,
 				6FFD81E72146176B00BFFA58 /* HomeView */,
-				6F08183A2140FA8D008F6F5F /* SearchController.xib */,
 				05223ABE214EBFC9007863BF /* PersonalView */,
 			);
 			path = Views;
@@ -200,7 +214,7 @@
 		6F0818382140FA81008F6F5F /* SearchController */ = {
 			isa = PBXGroup;
 			children = (
-				6F0818392140FA8D008F6F5F /* SearchController.swift */,
+				05BB30D5215006B900021172 /* SearchController.swift */,
 			);
 			path = SearchController;
 			sourceTree = "<group>";
@@ -304,6 +318,7 @@
 				6F0818382140FA81008F6F5F /* SearchController */,
 				6F0818332140FA5F008F6F5F /* HomeController */,
 				6F204342213FC27800FF09DB /* MainController */,
+				6FE364252150AD060041D23D /* DownloadCenter.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -333,6 +348,15 @@
 				6F6EF53821475E25009692D0 /* TrackCell.xib */,
 			);
 			path = trackCell;
+			sourceTree = "<group>";
+		};
+		6FABDE65215383B6005976D4 /* PopupCell */ = {
+			isa = PBXGroup;
+			children = (
+				6FABDE66215383DA005976D4 /* PlayListCell.swift */,
+				6FABDE67215383DA005976D4 /* PlayListCell.xib */,
+			);
+			path = PopupCell;
 			sourceTree = "<group>";
 		};
 		6FC4DFD0214216C100020933 /* Model */ = {
@@ -419,6 +443,7 @@
 		6FED85C22148FC1E0094289C /* PopupController */ = {
 			isa = PBXGroup;
 			children = (
+				6FABDE65215383B6005976D4 /* PopupCell */,
 				6F5A86DC214F44DC00B62EF8 /* PopupController.xib */,
 				6FED85C32148FC450094289C /* PopupController.swift */,
 			);
@@ -559,10 +584,11 @@
 				6F204334213FC21F00FF09DB /* Assets.xcassets in Resources */,
 				6FFD81F2214621E700BFFA58 /* GenericHeaderCell.xib in Resources */,
 				6FD6C9A7214A9635003501A4 /* TrackMessageView.xib in Resources */,
+				6FABDE69215383DA005976D4 /* PlayListCell.xib in Resources */,
 				05223AC3214EC04F007863BF /* TitleCell.xib in Resources */,
 				6F6EF53521475D50009692D0 /* TracksByGenericController.xib in Resources */,
-				6F08183C2140FA8D008F6F5F /* SearchController.xib in Resources */,
 				6FFD81FB2146285C00BFFA58 /* CategoryCell.xib in Resources */,
+				05BB30D8215006B900021172 /* SearchController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +607,7 @@
 				"${BUILT_PRODUCTS_DIR}/EFAutoScrollLabel/EFAutoScrollLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/NFDownloadButton/NFDownloadButton.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
@@ -593,6 +620,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EFAutoScrollLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NFDownloadButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
@@ -633,6 +661,7 @@
 				6F0818432140FBAB008F6F5F /* UIColor+Extention.swift in Sources */,
 				6F204344213FC29200FF09DB /* MainController.swift in Sources */,
 				6F1AABDB214A4A2C00512A58 /* APIKey.swift in Sources */,
+				05BB30D7215006B900021172 /* SearchController.swift in Sources */,
 				6FED85C9214938FC0094289C /* TrackTool.swift in Sources */,
 				6FD6C9A6214A9635003501A4 /* TrackMessageView.swift in Sources */,
 				6F1AABD92149E8CA00512A58 /* TrackMessage.swift in Sources */,
@@ -654,14 +683,15 @@
 				6FFD81F1214621E700BFFA58 /* GenericHeaderCell.swift in Sources */,
 				6FED85C52148FC450094289C /* PopupController.swift in Sources */,
 				6F08184B214119DD008F6F5F /* NameControllerConstant.swift in Sources */,
-				6F08183B2140FA8D008F6F5F /* SearchController.swift in Sources */,
 				6FC4DFDA21425D2100020933 /* APIService.swift in Sources */,
 				6FFD81F52146270500BFFA58 /* HomeTableViewCell.swift in Sources */,
 				05223ACB214EC8CE007863BF /* DownloadTrackData+CoreDataProperties.swift in Sources */,
 				6FC4DFEE2142617C00020933 /* BaseResult.swift in Sources */,
 				6FFD81FE21465A8000BFFA58 /* AlertViewController.swift in Sources */,
+				6FABDE68215383DA005976D4 /* PlayListCell.swift in Sources */,
 				6FC4DFCF214213F500020933 /* UIViewController+Extenstion.swift in Sources */,
 				6FC4DFD62142171800020933 /* Track.swift in Sources */,
+				6FE364262150AD060041D23D /* DownloadCenter.swift in Sources */,
 				05223ACA214EC8CE007863BF /* DownloadTrackData+CoreDataClass.swift in Sources */,
 				6FC4DFE621425F0400020933 /* BaseError.swift in Sources */,
 				6FC4DFEB214260C200020933 /* TrackRepository.swift in Sources */,

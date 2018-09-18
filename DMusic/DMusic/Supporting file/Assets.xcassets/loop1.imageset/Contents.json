@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "loop1@1x copy.png",
+      "filename" : "loop1@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "loop1@2x copy.png",
       "scale" : "2x"
     },
     {

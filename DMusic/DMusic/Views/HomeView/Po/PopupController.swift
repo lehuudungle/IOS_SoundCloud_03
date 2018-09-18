@@ -37,6 +37,10 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     @IBOutlet private weak var loopButton: UIButton!
     @IBOutlet private weak var downloadTrack: NFDownloadButton!
     
+    @IBOutlet weak var playListTable: UITableView!
+    
+
+    
     var trackPlayer = TrackTool.shared.trackPlayer
     var trackMessage = TrackTool.shared.trackMessage
     var playLayer: AVPlayerLayer!
@@ -69,7 +73,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
             setupSlider()
             progressTimer()
         }
-        
+        self.playListTable.register(cellType: PlayListCell.self)
     }
     
     func updateStatusLoop() {
@@ -121,6 +125,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         downloadTrack.isHidden = trackModel.downloadURL.isEmpty ? true : false
         downloadTrack.downloadState = .toDownload
         updateStatusDownload()
+        self.playListTable.reloadData()
     }
     
     func updateStatusDownload() {
@@ -147,15 +152,18 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         self.currentTimeLabel.text = seeToTime.convertCMTimeString
         self.trackSlider.value = currentSecond / Float(totalSecond)
     }
+    
     @IBAction func playAction(_ sender: Any) {
         
         if trackMessage.isPlaying {
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             TrackTool.shared.pauseTrack()
+            self.playListTable.reloadData()
             return
         }
         playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         TrackTool.shared.playTrack()
+        self.playListTable.reloadData()
     }
     
     @IBAction func popViewAction(_ sender: Any) {
@@ -170,6 +178,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         TrackTool.shared.nextTrack()
         updateInfoTrackDetail()
+        playListTable.reloadData()
     }
     
     @IBAction func preTrack(_ sender: Any) {
@@ -177,6 +186,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         TrackTool.shared.previousTrack()
         updateInfoTrackDetail()
+        playListTable.reloadData()
     }
     
     
@@ -185,6 +195,8 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         shuffleButton.setImage(isShuffle ? #imageLiteral(resourceName: "shuffleSelected") : #imageLiteral(resourceName: "shuffle"), for: .normal)
         actionLoop()
         TrackTool.shared.isShuffle = isShuffle
+        TrackTool.shared.shuffleTrack()
+        playListTable.reloadData()
     }
     
     @IBAction func loopAction(_ sender: Any) {
@@ -198,6 +210,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         }
         actionLoop()
         TrackTool.shared.isLoop = indexStatusLoop
+        playListTable.reloadData()
     }
     
     func actionLoop() {
@@ -223,22 +236,18 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         guard let trackModel = trackMessage.trackModel else { return }
         if sender.downloadState == .toDownload {
             sender.downloadState = .willDownload
-            
-            let filePathTrack = self.getSaveFileUrl(idTrack: "\(trackModel.id)")
-            trackListRepository.downloadForSong(idTrack: trackModel.id,
-                                                saveURL: filePathTrack,
-                                                dowloadProgress: { (numberProgress) in
-                                                    print("numberP: \(numberProgress)")
-                                                    self.downloadTrack.downloadPercent = CGFloat(numberProgress)
-            }, completion: {
-                print("download thanh cong")
-                self.saveTrack(filePathTrack)
-            })
+            DownloadCenter().getTrackFromServer()
+            NotificationCenter.default.addObserver(self, selector: #selector(self.updatePercenDownload(notification:)), name: Notification.Name("percentDownload"), object: nil)
         } else if sender.downloadState == .downloaded {
             
             sender.downloadState = .toDownload
             
         }
+    }
+    
+    @objc func updatePercenDownload(notification: Notification) {
+        let userInfo = notification.userInfo as! [String: Double]
+        downloadTrack.downloadPercent = CGFloat(userInfo["percentDownload"]!)
     }
     
     func getSaveFileUrl(idTrack: String) -> URL {
@@ -306,18 +315,44 @@ extension PopupController {
                 switch event.subtype {
                 case .remoteControlPlay:
                     TrackTool.shared.playTrack()
+                    print("play")
                 case .remoteControlPause:
                     TrackTool.shared.pauseTrack()
+                    print("pause")
                 case .remoteControlNextTrack:
                     TrackTool.shared.nextTrack()
+                    print("nextTrack")
                 case .remoteControlPreviousTrack:
                     TrackTool.shared.previousTrack()
+                     print("previosuTrack")
                 default:
                     print("Not display")
                 }
 
             }
         }
+    }
+}
+
+// MARK: PLAYLIST VIEW
+extension PopupController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return TrackTool.shared.tracks.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(for: indexPath) as PlayListCell
+        var isPlay = false
+        if indexPath.row == TrackTool.shared.trackIndex {
+            isPlay = true
+            if TrackTool.shared.trackMessage.isPlaying {
+                tableView.scrollToRow(at: indexPath, at: .top, animated: true)                
+            }
+        }
+        let tr = TrackTool.shared.tracks
+        cell.fill(track: TrackTool.shared.tracks[indexPath.row], isPlay)
+        return cell
+        
     }
 }
 

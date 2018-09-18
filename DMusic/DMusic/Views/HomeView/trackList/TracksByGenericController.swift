@@ -51,6 +51,9 @@ extension TracksByGenericController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as TrackCell
         cell.fill(track: tracks[indexPath.row].track)
+        cell.updatePercent = { () in
+            self.tracksTable.reloadData()
+        }
         return cell 
     }
     
@@ -98,5 +101,30 @@ extension TracksByGenericController: UITableViewDelegate, UITableViewDataSource 
         TrackTool.shared.setTrackMesseage(track: trackItem)
         let popUpController = PopupController.instantiate()
         self.navigationController?.present(popUpController, animated: true, completion: nil)
+    }
+}
+
+extension TracksByGenericController {
+    override func remoteControlReceived(with event: UIEvent?) {
+        if let event  = event  {
+            if event.type == .remoteControl {
+                switch event.subtype {
+                case .remoteControlPlay:
+                    TrackTool.shared.playTrack()
+                    print("play")
+                case .remoteControlPause:
+                    TrackTool.shared.pauseTrack()
+                    print("pause")
+                case .remoteControlNextTrack:
+                    TrackTool.shared.nextTrack()
+                    print("nextTrack")
+                case .remoteControlPreviousTrack:
+                    TrackTool.shared.previousTrack()
+                    print("previosuTrack")
+                default:
+                    print("Not display")
+                }
+            }
+        }
     }
 }

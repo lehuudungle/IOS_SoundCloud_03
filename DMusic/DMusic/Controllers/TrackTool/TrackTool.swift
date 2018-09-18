@@ -17,6 +17,9 @@ class TrackTool: NSObject {
     var trackPlayer = AVPlayer()
     var trackMessage: TrackMessage = TrackMessage()
     var tracks: [Track] = [Track]()
+    var shuffled: [Track] = [Track]()
+    var loopAllArray: [Track] = [Track]()
+    
     var downloadArray = [DownloadTrack]()
     var popUpDelegate: PopupControllerDelegate!
     let requiredAssetKeys = [
@@ -36,6 +39,8 @@ class TrackTool: NSObject {
         }
     }
     
+    var nonShuffleIndex =  -1
+    
     var statusLoop = StatusLoop.LoopAll
     var isShuffle = false
     var isLoop = 0
@@ -50,6 +55,7 @@ class TrackTool: NSObject {
             print(error)
             return
         }
+
     }
     
     func setTrackMesseage(track: Track) {
@@ -58,6 +64,10 @@ class TrackTool: NSObject {
         trackIndex = tracks.index{$0 === track}!
         prepareTrack()
         playTrack()
+        if !isShuffle {
+            loopAllArray = tracks
+            nonShuffleIndex = trackIndex
+        }
     }
     
     func updateTrackMessage(_ track: Track) {
@@ -130,11 +140,35 @@ class TrackTool: NSObject {
         print("nextTrack: \(trackIndex)")
         setTrackMesseage(track: tracks[trackIndex])
         setupLockScreen()
+        if !isShuffle {
+            loopAllArray = tracks
+        }
     }
     
     func previousTrack() {
         trackIndex += -1
         setTrackMesseage(track: tracks[trackIndex])
+        if !isShuffle {
+            loopAllArray = tracks
+        }
+    }
+    
+    func shuffleTrack() {
+        shuffled.removeAll()
+        if isShuffle {
+            shuffled.append(tracks[trackIndex])
+            tracks.remove(at: trackIndex)
+            for i in 0..<tracks.count {
+                let random = Int(arc4random_uniform(UInt32(tracks.count)))
+                shuffled.append(tracks[random])
+                tracks.remove(at: random)
+            }
+            tracks = shuffled
+            trackIndex = 0
+            return
+        }
+        tracks = loopAllArray
+        trackIndex = nonShuffleIndex
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -191,6 +225,8 @@ extension TrackTool {
         if self.trackMessage.isPlaying {
             playRate = 1
         }
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        
         
         var artWork: MPMediaItemArtwork!
         DispatchQueue.global(qos: .background).async {
@@ -211,8 +247,8 @@ extension TrackTool {
             }
         }
         
-        UIApplication.shared.beginReceivingRemoteControlEvents()
     }
+    
     
     
 }

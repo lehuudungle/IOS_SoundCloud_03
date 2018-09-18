@@ -25,11 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().tintColor = .black
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = MainController.shared
         self.window?.makeKeyAndVisible()
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white], for: .normal)
         return true
     }
     
