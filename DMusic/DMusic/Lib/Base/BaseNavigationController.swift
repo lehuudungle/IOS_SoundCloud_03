@@ -20,4 +20,28 @@ class BaseUIViewcontroller: UIViewController {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
+    
+    override func remoteControlReceived(with event: UIEvent?) {
+        if let event  = event  {
+            if event.type == .remoteControl {
+                switch event.subtype {
+                case .remoteControlPlay:
+                    TrackTool.shared.playTrack()
+                    print("playTrack")
+                case .remoteControlPause:
+                    TrackTool.shared.pauseTrack()
+                    print("pauseTrack")
+                case .remoteControlNextTrack:
+                    TrackTool.shared.nextTrack()
+                    print("nextTrack")
+                case .remoteControlPreviousTrack:
+                    TrackTool.shared.previousTrack()
+                    print("preTrack")
+                default:
+                    print("Not display")
+                }
+                
+            }
+        }
+    }
 }

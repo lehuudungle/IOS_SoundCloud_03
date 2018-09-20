@@ -103,25 +103,3 @@ extension SearchController: UISearchBarDelegate {
         self.searchBar.endEditing(true)
     }
 }
-
-extension SearchController {
-    override func remoteControlReceived(with event: UIEvent?) {
-        if let event  = event  {
-            if event.type == .remoteControl {
-                switch event.subtype {
-                case .remoteControlPlay:
-                    TrackTool.shared.playTrack()
-                case .remoteControlPause:
-                    TrackTool.shared.pauseTrack()
-                case .remoteControlNextTrack:
-                    TrackTool.shared.nextTrack()
-                case .remoteControlPreviousTrack:
-                    TrackTool.shared.previousTrack()
-                default:
-                    print("Not display")
-                }
-                
-            }
-        }
-    }
-}

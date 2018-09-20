@@ -50,6 +50,7 @@ class TrackTool: NSObject {
             print(error)
             return
         }
+
     }
     
     func setTrackMesseage(track: Track) {
@@ -195,7 +196,7 @@ extension TrackTool {
         var artWork: MPMediaItemArtwork!
         DispatchQueue.global(qos: .background).async {
             DispatchQueue.main.async {
-                print("trackImage: \(trackImageView.image!.size)")
+                print("trackImage: \(self.trackMessage.currentTime)")
                 let imageSize = CGSize(width: 300, height: 300)
                 artWork = MPMediaItemArtwork.init(boundsSize: (imageSize), requestHandler: { (size) -> UIImage in
                     return trackImageView.image!
@@ -204,7 +205,7 @@ extension TrackTool {
                 centerInfo.nowPlayingInfo = [
                     MPMediaItemPropertyTitle: title,
                     MPMediaItemPropertyArtwork: artWork!,
-                    MPNowPlayingInfoPropertyElapsedPlaybackTime: CMTimeGetSeconds(self.trackMessage.currentTime),
+                    MPNowPlayingInfoPropertyElapsedPlaybackTime: CMTimeGetSeconds(self.trackPlayer.currentTime()),
                     MPMediaItemPropertyPlaybackDuration: CMTimeGetSeconds(self.trackMessage.totalTime),
                     MPNowPlayingInfoPropertyPlaybackRate: playRate
                 ]

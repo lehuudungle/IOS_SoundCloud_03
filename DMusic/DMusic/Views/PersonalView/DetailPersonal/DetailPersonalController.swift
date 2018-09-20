@@ -19,6 +19,7 @@ class DetailPersonalController: BaseUIViewcontroller, NIBBased {
     private var downloadTracks = [DownloadTrack]()
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var fetchedRC: NSFetchedResultsController<DownloadTrackData>!
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var heightTableView: NSLayoutConstraint!
@@ -82,27 +83,27 @@ extension DetailPersonalController: UITableViewDataSource, UITableViewDelegate {
         TrackTool.shared.setTrackMesseage(track: trackArray[indexPath.row])
         let popUpController = PopupController.instantiate()
         self.navigationController?.present(popUpController, animated: true, completion: nil)
-    }
-}
 
-extension DetailPersonalController {
-    override func remoteControlReceived(with event: UIEvent?) {
-        if let event  = event  {
-            if event.type == .remoteControl {
-                switch event.subtype {
-                case .remoteControlPlay:
-                    TrackTool.shared.playTrack()
-                case .remoteControlPause:
-                    TrackTool.shared.pauseTrack()
-                case .remoteControlNextTrack:
-                    TrackTool.shared.nextTrack()
-                case .remoteControlPreviousTrack:
-                    TrackTool.shared.previousTrack()
-                default:
-                    print("Not display")
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let request = DownloadTrackData.fetchRequest() as NSFetchRequest<DownloadTrackData>
+            request.predicate = NSPredicate(format: "id = %d", downloadTracks[indexPath.row].track.id)
+            do {
+                let result = try context.fetch(request)
+                let trackModel = downloadTracks[indexPath.row]
+                for item in result as! [DownloadTrackData] {
+                    print("item: \(item.id)")
+                    if item.id == trackModel.track.id {
+                        context.delete(item)
+                    }
                 }
-                
+            } catch let error {
+                print("delete error; \(error)")
             }
+            downloadTracks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }

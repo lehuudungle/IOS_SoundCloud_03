@@ -37,6 +37,9 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     @IBOutlet private weak var loopButton: UIButton!
     @IBOutlet private weak var downloadTrack: NFDownloadButton!
 
+
+
+
     
     var trackPlayer = TrackTool.shared.trackPlayer
     var trackMessage = TrackTool.shared.trackMessage
@@ -67,22 +70,10 @@ class PopupController: BaseUIViewcontroller, NIBBased {
             updateInfoTrackDetail()
             updateStatusPlay()
             updateStatusLoop()
-//            setupSlider()
-//            progressTimer()
+            setupSlider()
+            progressTimer()
         }
-        
-        trackSlider.isContinuous = false
-        trackSlider.addTarget(self, action: #selector(editcange), for: UIControlEvents.editingChanged)
-        trackSlider.addTarget(self, action: #selector(kethuc), for: UIControlEvents.valueChanged)
-    }
-    
-    @objc func editcange() {
-        print("edit change")
-    }
-    
-    @objc func kethuc() {
-        print("ket thuc")
-        popupTimer.invalidate()
+
     }
     
     func updateStatusLoop() {
@@ -152,8 +143,8 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     }
     
     @IBAction func changeValueSlider(_ sender: Any) {
-        /*
-        popupTimer.invalidate()
+        
+//        popupTimer.invalidate()
         let totalSecond  = CMTimeGetSeconds(trackMessage.totalTime)
         let currentSecond = Float(totalSecond) * trackSlider.value
         let seeToTime = CMTime(value: CMTimeValue(currentSecond), timescale: 1)
@@ -161,8 +152,9 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         }
         self.currentTimeLabel.text = seeToTime.convertCMTimeString
         self.trackSlider.value = currentSecond / Float(totalSecond)
- */
+
     }
+    
     @IBAction func playAction(_ sender: Any) {
         
         if trackMessage.isPlaying {
@@ -239,22 +231,18 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         guard let trackModel = trackMessage.trackModel else { return }
         if sender.downloadState == .toDownload {
             sender.downloadState = .willDownload
-            
-            let filePathTrack = self.getSaveFileUrl(idTrack: "\(trackModel.id)")
-            trackListRepository.downloadForSong(idTrack: trackModel.id,
-                                                saveURL: filePathTrack,
-                                                dowloadProgress: { (numberProgress) in
-                                                    print("numberP: \(numberProgress)")
-                                                    self.downloadTrack.downloadPercent = CGFloat(numberProgress)
-            }, completion: {
-                print("download thanh cong")
-                self.saveTrack(filePathTrack)
-            })
+            DownloadCenter().getTrackFromServer()
+            NotificationCenter.default.addObserver(self, selector: #selector(self.updatePercenDownload(notification:)), name: Notification.Name("percentDownload"), object: nil)
         } else if sender.downloadState == .downloaded {
             
             sender.downloadState = .toDownload
             
         }
+    }
+    
+    @objc func updatePercenDownload(notification: Notification) {
+        let userInfo = notification.userInfo as! [String: Double]
+        downloadTrack.downloadPercent = CGFloat(userInfo["percentDownload"]!)
     }
     
     func getSaveFileUrl(idTrack: String) -> URL {
@@ -321,17 +309,21 @@ extension PopupController {
             if event.type == .remoteControl {
                 switch event.subtype {
                 case .remoteControlPlay:
-                    TrackTool.shared.playTrack()
+                    self.playAction(playPauseButton)
+                    print("playTrack")
                 case .remoteControlPause:
-                    TrackTool.shared.pauseTrack()
+                    self.playAction(playPauseButton)
+                    print("pauseTrack")
                 case .remoteControlNextTrack:
-                    TrackTool.shared.nextTrack()
+                    self.nextTrack(playPauseButton)
+                    print("nextTrack")
                 case .remoteControlPreviousTrack:
-                    TrackTool.shared.previousTrack()
+                    self.preTrack(playPauseButton)
+                    print("preTrack")
                 default:
                     print("Not display")
                 }
-
+                
             }
         }
     }

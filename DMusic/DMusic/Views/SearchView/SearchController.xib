@@ -52,18 +52,18 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bcA-s8-hHx" secondAttribute="trailing" id="0BV-0x-xWm"/>
-                <constraint firstItem="9vg-vF-qx6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Fjo-Rw-oIg"/>
+                <constraint firstAttribute="trailing" secondItem="bcA-s8-hHx" secondAttribute="trailing" id="0BV-0x-xWm"/>
+                <constraint firstItem="9vg-vF-qx6" firstAttribute="top" secondItem="1HG-s2-QsF" secondAttribute="top" id="Fjo-Rw-oIg"/>
                 <constraint firstItem="bcA-s8-hHx" firstAttribute="top" secondItem="vYA-5H-SlV" secondAttribute="bottom" constant="10" id="Jkb-DB-qpq"/>
-                <constraint firstItem="9vg-vF-qx6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="5" id="Lcx-wk-keD"/>
-                <constraint firstItem="bcA-s8-hHx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Nd8-YF-dsM"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9vg-vF-qx6" secondAttribute="trailing" constant="5" id="Nvb-4x-hPv"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vYA-5H-SlV" secondAttribute="trailing" id="bK3-np-Qt5"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bcA-s8-hHx" secondAttribute="bottom" id="iJF-0Y-uYy"/>
+                <constraint firstItem="9vg-vF-qx6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="Lcx-wk-keD"/>
+                <constraint firstItem="bcA-s8-hHx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Nd8-YF-dsM"/>
+                <constraint firstAttribute="trailing" secondItem="9vg-vF-qx6" secondAttribute="trailing" constant="5" id="Nvb-4x-hPv"/>
+                <constraint firstAttribute="trailing" secondItem="vYA-5H-SlV" secondAttribute="trailing" id="bK3-np-Qt5"/>
+                <constraint firstAttribute="bottom" secondItem="bcA-s8-hHx" secondAttribute="bottom" id="iJF-0Y-uYy"/>
                 <constraint firstItem="vYA-5H-SlV" firstAttribute="top" secondItem="9vg-vF-qx6" secondAttribute="bottom" id="ibC-Kt-Ij5"/>
-                <constraint firstItem="vYA-5H-SlV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tgo-OG-E59"/>
+                <constraint firstItem="vYA-5H-SlV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tgo-OG-E59"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <viewLayoutGuide key="safeArea" id="1HG-s2-QsF"/>
         </view>
     </objects>
 </document>

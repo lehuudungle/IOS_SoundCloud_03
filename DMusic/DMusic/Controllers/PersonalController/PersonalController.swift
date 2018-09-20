@@ -13,12 +13,17 @@ class PersonalController: BaseUIViewcontroller, NIBBased {
     
     @IBOutlet private weak var personalTable: UITableView!
     
-    var titleImage = [#imageLiteral(resourceName: "download"), #imageLiteral(resourceName: "shareblack")]
-    var nameCell = ["Download", "Share"]
+    var titleImage = [#imageLiteral(resourceName: "download")]
+    var nameCell = ["Download"]
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     override func viewDidLoad() {
         super.viewDidLoad()
         personalTable.register(cellType: TitleCell.self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        personalTable.reloadData()
     }
 }
 
@@ -49,28 +54,6 @@ extension PersonalController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(detailTracks, animated: true)
         default:
             return
-        }
-    }
-}
-
-extension PersonalController {
-    override func remoteControlReceived(with event: UIEvent?) {
-        if let event  = event  {
-            if event.type == .remoteControl {
-                switch event.subtype {
-                case .remoteControlPlay:
-                    TrackTool.shared.playTrack()
-                case .remoteControlPause:
-                    TrackTool.shared.pauseTrack()
-                case .remoteControlNextTrack:
-                    TrackTool.shared.nextTrack()
-                case .remoteControlPreviousTrack:
-                    TrackTool.shared.previousTrack()
-                default:
-                    print("Not display")
-                }
-                
-            }
         }
     }
 }

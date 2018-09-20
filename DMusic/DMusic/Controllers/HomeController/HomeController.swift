@@ -21,7 +21,7 @@ class HomeController: BaseUIViewcontroller, NIBBased, AlertViewController {
         static let countGeneric = 6
         static let countRows = 1
         static let titleNavigation = "Home"
-
+        
         static let heightScreen = UIScreen.main.bounds.height
         static let widthScreen = UIScreen.main.bounds.width
         static let heightMessageTrack: CGFloat = 60
@@ -33,11 +33,11 @@ class HomeController: BaseUIViewcontroller, NIBBased, AlertViewController {
     var tracksByGeneric = [Int: [InfoTrack]]()
     var offset = 0
     var allLinkURL = [LinkURL.allMusicURL,
-                     LinkURL.allAudioURL,
-                     LinkURL.alternativerockURL,
-                     LinkURL.ambientURL,
-                     LinkURL.classicalURL,
-                     LinkURL.countryURL]
+                      LinkURL.allAudioURL,
+                      LinkURL.alternativerockURL,
+                      LinkURL.ambientURL,
+                      LinkURL.classicalURL,
+                      LinkURL.countryURL]
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
@@ -90,7 +90,6 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         let headerView = GenericHeaderCell.loadFromNib()
         headerView.passDataCell(index: section)
         headerView.seeAll = {(linkGenenric) in
-            UIApplication.shared.keyWindow?.removeFromSuperview()
             let trackListController = TracksByGenericController.instantiate()
             if let firstTracks = self.tracksByGeneric[linkGenenric.rawValue] {
                 trackListController.tracks += firstTracks
@@ -112,7 +111,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as HomeTableViewCell
         cell.didSelected = {(track) in
-
+            
             print("indexPath:\(indexPath.section)")
             let infoTrackArray: [InfoTrack] = self.tracksByGeneric[indexPath.section]!
             let tracks = infoTrackArray.map({ (value) in
