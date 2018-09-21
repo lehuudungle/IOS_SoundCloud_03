@@ -11,7 +11,7 @@ import Reusable
 import SDWebImage
 class CategoryCell: UICollectionViewCell, NibReusable {
     private struct Constant {
-        static let defaultImage = #imageLiteral(resourceName: "personal_icon")
+        static let defaultImage = #imageLiteral(resourceName: "artworks")
         static let defaultTitle = "No Track"
     }
     

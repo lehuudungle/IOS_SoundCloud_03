@@ -64,6 +64,7 @@ class TrackMessageView: UIViewController {
         popUpController.showMessage = true
         let trackMessage = TrackTool.shared.trackMessage
         trackMessage.currentTime = TrackTool.shared.trackPlayer.currentTime()
+        TrackTool.shared.updateListShuffle()
         MainController.shared.present(popUpController, animated: true, completion: nil)
     }
     

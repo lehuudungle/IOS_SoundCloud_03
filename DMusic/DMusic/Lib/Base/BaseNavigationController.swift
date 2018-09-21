@@ -20,7 +20,7 @@ class BaseUIViewcontroller: UIViewController {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
+    /*
     override func remoteControlReceived(with event: UIEvent?) {
         if let event  = event  {
             if event.type == .remoteControl {
@@ -44,4 +44,5 @@ class BaseUIViewcontroller: UIViewController {
             }
         }
     }
+ */
 }

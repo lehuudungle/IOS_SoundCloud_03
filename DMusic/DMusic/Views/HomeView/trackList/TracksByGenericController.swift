@@ -98,7 +98,7 @@ extension TracksByGenericController: UITableViewDelegate, UITableViewDataSource 
             }
         }
         TrackTool.shared.isOnline = true
-        TrackTool.shared.setTrackMesseage(track: trackItem)
+        TrackTool.shared.setTrackPlayer(track: trackItem)
         let popUpController = PopupController.instantiate()
         self.navigationController?.present(popUpController, animated: true, completion: nil)
     }
@@ -111,16 +111,20 @@ extension TracksByGenericController {
                 switch event.subtype {
                 case .remoteControlPlay:
                     TrackTool.shared.playTrack()
+
+                    print("play")
                 case .remoteControlPause:
                     TrackTool.shared.pauseTrack()
+                    print("pause")
                 case .remoteControlNextTrack:
                     TrackTool.shared.nextTrack()
+                    print("nextTrack")
                 case .remoteControlPreviousTrack:
                     TrackTool.shared.previousTrack()
+                    print("previosuTrack")
                 default:
                     print("Not display")
                 }
-                
             }
         }
     }

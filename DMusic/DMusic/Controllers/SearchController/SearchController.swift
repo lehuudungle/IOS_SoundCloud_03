@@ -68,8 +68,11 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        print("workItem: \(self.workItem)")
+        print("workItemCancel: \(self.workItem?.cancel())")
         self.workItem?.cancel()
         let workItem = DispatchWorkItem { [weak self] in
+            print("workItem dc goi")
             self?.keySearch = searchBar.text!
             self!.loadMore()
         }
@@ -101,5 +104,32 @@ extension SearchController: UISearchBarDelegate {
         resultTracks = [Track]()
         tableView.reloadData()
         self.searchBar.endEditing(true)
+    }
+}
+
+extension SearchController {
+    override func remoteControlReceived(with event: UIEvent?) {
+        if let event  = event  {
+            if event.type == .remoteControl {
+                switch event.subtype {
+                case .remoteControlPlay:
+                    
+                    TrackTool.shared.playTrack()
+                    print("play")
+                case .remoteControlPause:
+                    TrackTool.shared.pauseTrack()
+                    print("pause")
+                case .remoteControlNextTrack:
+                    TrackTool.shared.nextTrack()
+                    print("nextTrack")
+                case .remoteControlPreviousTrack:
+                    TrackTool.shared.previousTrack()
+                    print("previosuTrack")
+                default:
+                    print("Not display")
+                }
+                
+            }
+        }
     }
 }

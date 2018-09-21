@@ -21,6 +21,7 @@
                 <outlet property="nameTrackLabel" destination="6S3-fX-2z5" id="5HO-ol-z6Q"/>
                 <outlet property="nextButton" destination="sCv-iB-gGP" id="I8O-fE-EKn"/>
                 <outlet property="pageController" destination="LSR-C7-NNN" id="4rs-B1-ele"/>
+                <outlet property="playListTable" destination="h5m-OU-eIw" id="kUF-qq-Fb2"/>
                 <outlet property="playPauseButton" destination="rz0-41-sDc" id="R8f-HS-GI9"/>
                 <outlet property="preButton" destination="9ZE-uH-zm6" id="Vkg-sD-CCq"/>
                 <outlet property="scrollView" destination="k93-ip-cbD" id="nDP-4R-WBz"/>
@@ -46,7 +47,7 @@
                                 <action selector="popViewAction:" destination="-1" eventType="touchUpInside" id="TsQ-D2-uLK"/>
                             </connections>
                         </button>
-                        <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="LSR-C7-NNN">
+                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="LSR-C7-NNN">
                             <rect key="frame" x="176" y="11.5" width="23" height="37"/>
                         </pageControl>
                     </subviews>
@@ -73,7 +74,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="artworks" translatesAutoresizingMaskIntoConstraints="NO" id="8Oq-V6-80i">
-                                                    <rect key="frame" x="62.5" y="20" width="250" height="250"/>
+                                                    <rect key="frame" x="63" y="20" width="250" height="250"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="8Oq-V6-80i" secondAttribute="height" multiplier="1:1" priority="999" id="ndZ-uk-zuI"/>
                                                     </constraints>
@@ -96,7 +97,23 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfW-OE-xTp" userLabel="twoView">
                                             <rect key="frame" x="375" y="0.0" width="375" height="387"/>
+                                            <subviews>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h5m-OU-eIw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="-1" id="LnO-C4-CxC"/>
+                                                        <outlet property="delegate" destination="-1" id="0ZP-re-mfK"/>
+                                                    </connections>
+                                                </tableView>
+                                            </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="h5m-OU-eIw" secondAttribute="trailing" id="6JG-gi-hI0"/>
+                                                <constraint firstAttribute="bottom" secondItem="h5m-OU-eIw" secondAttribute="bottom" id="B5Y-Wt-6iu"/>
+                                                <constraint firstItem="h5m-OU-eIw" firstAttribute="top" secondItem="xfW-OE-xTp" secondAttribute="top" id="RF0-x3-gms"/>
+                                                <constraint firstItem="h5m-OU-eIw" firstAttribute="leading" secondItem="xfW-OE-xTp" secondAttribute="leading" id="c13-Ve-alR"/>
+                                            </constraints>
                                         </view>
                                     </subviews>
                                 </stackView>
@@ -137,7 +154,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rz0-41-sDc" userLabel="play">
-                            <rect key="frame" x="156.5" y="114" width="62.5" height="62.5"/>
+                            <rect key="frame" x="157" y="114" width="62.5" height="62.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="rz0-41-sDc" secondAttribute="height" multiplier="1:1" id="gB6-BZ-Q2p"/>
                             </constraints>
@@ -147,7 +164,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCv-iB-gGP" userLabel="next">
-                            <rect key="frame" x="249" y="122" width="46.5" height="46.5"/>
+                            <rect key="frame" x="249.5" y="122" width="46" height="46.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="sCv-iB-gGP" secondAttribute="height" multiplier="1:1" id="MGM-cM-NiP"/>
                             </constraints>
@@ -157,14 +174,14 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ZE-uH-zm6" userLabel="pre">
-                            <rect key="frame" x="79.5" y="122" width="47" height="46.5"/>
+                            <rect key="frame" x="80.5" y="122" width="46.5" height="46.5"/>
                             <state key="normal" image="pre"/>
                             <connections>
                                 <action selector="preTrack:" destination="-1" eventType="touchUpInside" id="Yvk-Wy-U5n"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-XZ-jSS" userLabel="loop">
-                            <rect key="frame" x="321.5" y="128" width="33.5" height="34"/>
+                            <rect key="frame" x="321.5" y="128.5" width="33.5" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="ANb-XZ-jSS" secondAttribute="height" multiplier="1:1" id="pve-hp-FMy"/>
                             </constraints>
@@ -174,7 +191,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fR-PD-XNr" userLabel="shuffle">
-                            <rect key="frame" x="20" y="128.5" width="33.5" height="33.5"/>
+                            <rect key="frame" x="20" y="129" width="33.5" height="33.5"/>
                             <state key="normal" image="shuffle"/>
                             <connections>
                                 <action selector="shuffleAction:" destination="-1" eventType="touchUpInside" id="QYH-h2-wzl"/>
@@ -272,13 +289,14 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eOB-cM-ypm" secondAttribute="trailing" id="vON-9k-Exb"/>
                 <constraint firstItem="7eA-05-khh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ztA-gd-R6l"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="121.5" y="-197.5"/>
         </view>
     </objects>
     <resources>
         <image name="arrowDown" width="32" height="32"/>
-        <image name="artworks" width="300" height="300"/>
+        <image name="artworks" width="600" height="600"/>
         <image name="loop" width="24" height="24"/>
         <image name="nextPlay" width="32" height="32"/>
         <image name="play" width="64" height="64"/>
