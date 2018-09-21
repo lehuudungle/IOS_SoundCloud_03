@@ -23,6 +23,7 @@ struct URLs {
     static func getDownloadURL(id: Int64) -> String {
         return String(format: "%@/%@/download?client_id=%@", APIDownloadURL,"\(id)", APIKey.CliendId)
     }
+
     
     static func getSearchURL() -> String {
         return String(format: "%@?client_id=%@", APISearchUrl, APIKey.CliendId)

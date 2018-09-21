@@ -12,7 +12,6 @@ import NFDownloadButton
 import CoreData
 
 class TrackCell: UITableViewCell, NibReusable {
-
     private struct Constant {
         static let defaultGeneric = "No Generic"
         static let defaultTitleTrack = "No Track"
@@ -66,6 +65,7 @@ class TrackCell: UITableViewCell, NibReusable {
                 print("error: \(error)")
             }
         }
+         NotificationCenter.default.addObserver(self, selector: #selector(self.updatePercenDownload(notification:)), name: Notification.Name("percentDownload"), object: nil)
 
          NotificationCenter.default.addObserver(self, selector: #selector(self.updatePercenDownload(notification:)), name: Notification.Name("percentDownload"), object: nil)
 
@@ -78,9 +78,14 @@ class TrackCell: UITableViewCell, NibReusable {
     }
     
     @objc func updatePercenDownload(notification: Notification) {
+
+//       let trackMessage = DownloadCenter.shared.trackMessage
         let userInfo = notification.userInfo as! [String: Double]
+//        guard let trackModel = Int64(userInfo["idTrack"]!) else { return }
         let trackId = Int64(userInfo["idTrack"]!)
         if trackCell.id == trackId {
+            print("trackId: \(trackId)")
+            print("download cell: \(userInfo["percentDownload"]!)")
             statusDownload.downloadPercent = CGFloat(userInfo["percentDownload"]!)
         }
 

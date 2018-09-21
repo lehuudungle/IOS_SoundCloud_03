@@ -19,6 +19,10 @@ extension UIColor {
     static var grayColor: UIColor {
         return UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 1)
     }
+    //30343D
+    static var navColor: UIColor {
+        return UIColor(red: 48/255, green: 52/255, blue: 61/255, alpha: 1)
+    }
 }
 
 extension String {

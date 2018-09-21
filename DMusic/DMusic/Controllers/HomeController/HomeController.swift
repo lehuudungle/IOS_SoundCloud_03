@@ -127,7 +127,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             TrackTool.shared.isOnline = true
-            TrackTool.shared.setTrackMesseage(track: track)
+            TrackTool.shared.setTrackPlayer(track: track)
             let popUpController = PopupController.instantiate()
             self.navigationController?.present(popUpController, animated: true, completion: nil)
             
@@ -145,17 +145,23 @@ extension HomeController {
                 switch event.subtype {
                 case .remoteControlPlay:
                     TrackTool.shared.playTrack()
+
+                    print("play")
                 case .remoteControlPause:
                     TrackTool.shared.pauseTrack()
+                    print("pause")
                 case .remoteControlNextTrack:
                     TrackTool.shared.nextTrack()
+                    print("nextTrack")
                 case .remoteControlPreviousTrack:
                     TrackTool.shared.previousTrack()
+                    print("previosuTrack")
                 default:
                     print("Not display")
                 }
                 
             }
+
         }
     }
 }

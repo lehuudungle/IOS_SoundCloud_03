@@ -80,7 +80,7 @@ extension DetailPersonalController: UITableViewDataSource, UITableViewDelegate {
         }
         TrackTool.shared.tracks = trackArray
         TrackTool.shared.isOnline = false
-        TrackTool.shared.setTrackMesseage(track: trackArray[indexPath.row])
+        TrackTool.shared.setTrackPlayer(track: trackArray[indexPath.row])
         let popUpController = PopupController.instantiate()
         self.navigationController?.present(popUpController, animated: true, completion: nil)
 
@@ -104,6 +104,34 @@ extension DetailPersonalController: UITableViewDataSource, UITableViewDelegate {
             }
             downloadTracks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+}
+
+extension DetailPersonalController {
+    override func remoteControlReceived(with event: UIEvent?) {
+        if let event  = event  {
+            if event.type == .remoteControl {
+                switch event.subtype {
+                case .remoteControlPlay:
+                    
+                    TrackTool.shared.playTrack()
+                    print("play")
+                case .remoteControlPause:
+                    TrackTool.shared.pauseTrack()
+                    print("pause")
+                case .remoteControlNextTrack:
+                    TrackTool.shared.nextTrack()
+                    print("nextTrack")
+                case .remoteControlPreviousTrack:
+                    TrackTool.shared.previousTrack()
+                    print("previosuTrack")
+                default:
+                    print("Not display")
+                }
+                
+            }
         }
     }
 }

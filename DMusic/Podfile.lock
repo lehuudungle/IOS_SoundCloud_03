@@ -1,42 +1,60 @@
 PODS:
-  - Alamofire (4.6.0)
-  - AlamofireObjectMapper (5.0.0):
+  - Alamofire (4.7.3)
+  - AlamofireObjectMapper (5.1.0):
     - Alamofire (~> 4.1)
-    - ObjectMapper (~> 3.0)
+    - ObjectMapper (~> 3.3)
   - EFAutoScrollLabel (4.0.2)
   - MBProgressHUD (1.1.0)
-  - NFDownloadButton (0.0.3)
-  - ObjectMapper (3.1.0)
+  - NFDownloadButton (0.0.4)
+  - NVActivityIndicatorView (4.3.0):
+    - NVActivityIndicatorView/Presenter (= 4.3.0)
+  - NVActivityIndicatorView/Presenter (4.3.0)
+  - ObjectMapper (3.3.0)
   - ReachabilitySwift (4.1.0)
-  - Reusable (4.0.0):
-    - Reusable/Storyboard (= 4.0.0)
-    - Reusable/View (= 4.0.0)
-  - Reusable/Storyboard (4.0.0)
-  - Reusable/View (4.0.0)
-  - SDWebImage (4.2.3):
-    - SDWebImage/Core (= 4.2.3)
-  - SDWebImage/Core (4.2.3)
+  - Reusable (4.0.3):
+    - Reusable/Storyboard (= 4.0.3)
+    - Reusable/View (= 4.0.3)
+  - Reusable/Storyboard (4.0.3)
+  - Reusable/View (4.0.3)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
 
 DEPENDENCIES:
   - AlamofireObjectMapper
   - EFAutoScrollLabel
   - MBProgressHUD
   - NFDownloadButton
+  - NVActivityIndicatorView
   - ReachabilitySwift
   - Reusable
   - SDWebImage
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireObjectMapper
+    - EFAutoScrollLabel
+    - MBProgressHUD
+    - NFDownloadButton
+    - NVActivityIndicatorView
+    - ObjectMapper
+    - ReachabilitySwift
+    - Reusable
+    - SDWebImage
+
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
   EFAutoScrollLabel: 0534a0535b5ab9131c939dcf45aaa9f398156e97
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  NFDownloadButton: d9e73c663dfe2e7d50742e36f7942223e019b3f3
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  NFDownloadButton: 2ccb40961f97fee9d08fcb15693ecc4a4ae1ce5f
+  NVActivityIndicatorView: 963f62bf9f993fcf23218e55958e5b1761b9504c
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
-  Reusable: 98e5fff1e0e2e00872199699b276dde08ee56c07
-  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
+  Reusable: 12b67a60e1f3e8c523cc910795dab733f58fbc7e
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: 883df0a4dac164cefc684ca29e9b668f7583f69b
+PODFILE CHECKSUM: 417b52bb3a6b36c3e6c2a27bc61a9ad8e2ff93d0
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.3

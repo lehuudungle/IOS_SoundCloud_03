@@ -13,4 +13,5 @@ target 'DMusic' do
   pod 'SDWebImage'
   pod 'EFAutoScrollLabel'
   pod 'NFDownloadButton'
+  pod 'NVActivityIndicatorView'
 end
