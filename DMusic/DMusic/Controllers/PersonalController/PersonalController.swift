@@ -13,8 +13,8 @@ class PersonalController: BaseUIViewcontroller, NIBBased {
     
     @IBOutlet private weak var personalTable: UITableView!
     
-    var titleImage = [#imageLiteral(resourceName: "download")]
-    var nameCell = ["Download"]
+    var titleImage = [#imageLiteral(resourceName: "download"), #imageLiteral(resourceName: "favorite")]
+    var nameCell = ["Download", "Favorite]"]
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,27 +34,44 @@ extension PersonalController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as TitleCell
-        let request = DownloadTrackData.fetchRequest() as NSFetchRequest<DownloadTrackData>
-        do {
-            cell.titleImage.image = titleImage[indexPath.row]
-            cell.nameLabel.text = nameCell[indexPath.row]
-            if indexPath.row == 0 {            
+        switch indexPath.row {
+        case 0:
+            let request = DownloadTrackData.fetchRequest() as NSFetchRequest<DownloadTrackData>
+            do {
+//                cell.titleImage.image = titleImage[indexPath.row]
+//                cell.nameLabel.text = nameCell[indexPath.row]
+//                if indexPath.row == 0 {
+//                    let result = try context.fetch(request)
+//                    cell.numberTrack.text = "\(result.count)"
+//                }
                 let result = try context.fetch(request)
-                cell.numberTrack.text = "\(result.count)"
-            }
-            
-        } catch {}
+                cell.fill(nameTitle: nameCell[indexPath.row], titleImage: titleImage[indexPath.row], number: result.count)
+                
+            } catch {}
+        case 1:
+            let request = FavoriteTrackData.fetchRequest() as NSFetchRequest<FavoriteTrackData>
+            do{
+                let result = try context.fetch(request)
+                cell.fill(nameTitle: nameCell[indexPath.row], titleImage: titleImage[indexPath.row], number: result.count)
+            }catch {}
+        default:
+            break
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailTracks = DetailPersonalController.instantiate()
         switch indexPath.row {
         case 0:
-            let detailTracks = DetailPersonalController.instantiate()
-            self.navigationController?.pushViewController(detailTracks, animated: true)
+            detailTracks.positionview = 0
+        case 1:
+            detailTracks.positionview = 1
         default:
             return
         }
+        self.navigationController?.pushViewController(detailTracks, animated: true)
     }
 }
 

@@ -15,6 +15,8 @@
 		05223AD0214ECA54007863BF /* DetailPersonalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05223ACE214ECA54007863BF /* DetailPersonalController.xib */; };
 		05223AD2214ED4F8007863BF /* DownloadTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05223AD1214ED4F8007863BF /* DownloadTrack.swift */; };
 		0545A08B214E5CAD00443E98 /* DMusicData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0545A089214E5CAD00443E98 /* DMusicData.xcdatamodeld */; };
+		057B77E1215644BC000A1A82 /* FavoriteTrackData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B77DF215644BC000A1A82 /* FavoriteTrackData+CoreDataClass.swift */; };
+		057B77E2215644BC000A1A82 /* FavoriteTrackData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B77E0215644BC000A1A82 /* FavoriteTrackData+CoreDataProperties.swift */; };
 		05BB30D7215006B900021172 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB30D5215006B900021172 /* SearchController.swift */; };
 		05BB30D8215006B900021172 /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05BB30D6215006B900021172 /* SearchController.xib */; };
 		6F0818362140FA75008F6F5F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0818342140FA75008F6F5F /* HomeController.swift */; };
@@ -73,6 +75,8 @@
 		05223ACE214ECA54007863BF /* DetailPersonalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPersonalController.xib; sourceTree = "<group>"; };
 		05223AD1214ED4F8007863BF /* DownloadTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTrack.swift; sourceTree = "<group>"; };
 		0545A08A214E5CAD00443E98 /* DMusicData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DMusicData.xcdatamodel; sourceTree = "<group>"; };
+		057B77DF215644BC000A1A82 /* FavoriteTrackData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteTrackData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		057B77E0215644BC000A1A82 /* FavoriteTrackData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteTrackData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		05BB30D5215006B900021172 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		05BB30D6215006B900021172 /* SearchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
 		6F0818342140FA75008F6F5F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 		05223AAD214EBCCE007863BF /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				057B77DF215644BC000A1A82 /* FavoriteTrackData+CoreDataClass.swift */,
+				057B77E0215644BC000A1A82 /* FavoriteTrackData+CoreDataProperties.swift */,
 				05223AC8214EC8CE007863BF /* DownloadTrackData+CoreDataClass.swift */,
 				05223AC9214EC8CE007863BF /* DownloadTrackData+CoreDataProperties.swift */,
 				0545A089214E5CAD00443E98 /* DMusicData.xcdatamodeld */,
@@ -519,8 +525,9 @@
 				6F204325213FC21200FF09DB /* Sources */,
 				6F204326213FC21200FF09DB /* Frameworks */,
 				6F204327213FC21200FF09DB /* Resources */,
-				5A647267FCF2C633AF16780A /* [CP] Embed Pods Frameworks */,
-				25988A18F74AA406D8913B21 /* [CP] Copy Pods Resources */,
+				5A647267FCF2C633AF16780A /* [CP] Check Pods Manifest.lock */,
+				203A25E24FAB065D5B44D329 /* [CP] Embed Pods Frameworks */,
+				4E55D09E006608FAB2D000C5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -602,16 +609,34 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DMusic-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		25988A18F74AA406D8913B21 /* [CP] Copy Pods Resources */ = {
+		203A25E24FAB065D5B44D329 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DMusic/Pods-DMusic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E55D09E006608FAB2D000C5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -626,40 +651,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DMusic/Pods-DMusic-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5A647267FCF2C633AF16780A /* [CP] Embed Pods Frameworks */ = {
+		5A647267FCF2C633AF16780A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DMusic/Pods-DMusic-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/EFAutoScrollLabel/EFAutoScrollLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/NFDownloadButton/NFDownloadButton.framework",
-				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EFAutoScrollLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NFDownloadButton.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DMusic/Pods-DMusic-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -672,6 +676,7 @@
 				6FFD820021465B1500BFFA58 /* Constants.swift in Sources */,
 				6FFD81FA2146285C00BFFA58 /* CategoryCell.swift in Sources */,
 				6F0818432140FBAB008F6F5F /* UIColor+Extention.swift in Sources */,
+				057B77E1215644BC000A1A82 /* FavoriteTrackData+CoreDataClass.swift in Sources */,
 				6F204344213FC29200FF09DB /* MainController.swift in Sources */,
 				6F1AABDB214A4A2C00512A58 /* APIKey.swift in Sources */,
 				05BB30D7215006B900021172 /* SearchController.swift in Sources */,
@@ -682,6 +687,7 @@
 				6FC4DFF0214265D100020933 /* TrackListRequest.swift in Sources */,
 				6F20432D213FC21200FF09DB /* AppDelegate.swift in Sources */,
 				6FC4DFDF21425DC300020933 /* CustomRequestAdapter.swift in Sources */,
+				057B77E2215644BC000A1A82 /* FavoriteTrackData+CoreDataProperties.swift in Sources */,
 				05223ACF214ECA54007863BF /* DetailPersonalController.swift in Sources */,
 				6FC4DFE321425E5B00020933 /* BaseRequest.swift in Sources */,
 				6F0818362140FA75008F6F5F /* HomeController.swift in Sources */,

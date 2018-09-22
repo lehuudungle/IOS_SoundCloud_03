@@ -17,6 +17,7 @@
                 <outlet property="artWorkImage" destination="8Oq-V6-80i" id="0Ju-Kj-ZYM"/>
                 <outlet property="currentTimeLabel" destination="7SJ-52-6Ij" id="YAv-Br-rbd"/>
                 <outlet property="downloadTrack" destination="cKN-DP-Wsj" id="s7g-Mh-V7F"/>
+                <outlet property="favorite" destination="FNf-E6-Dyf" id="Owm-7L-rLs"/>
                 <outlet property="loopButton" destination="ANb-XZ-jSS" id="Bbm-bi-F24"/>
                 <outlet property="nameTrackLabel" destination="6S3-fX-2z5" id="5HO-ol-z6Q"/>
                 <outlet property="nextButton" destination="sCv-iB-gGP" id="I8O-fE-EKn"/>
@@ -26,6 +27,7 @@
                 <outlet property="preButton" destination="9ZE-uH-zm6" id="Vkg-sD-CCq"/>
                 <outlet property="scrollView" destination="k93-ip-cbD" id="nDP-4R-WBz"/>
                 <outlet property="shuffleButton" destination="7fR-PD-XNr" id="7kB-xB-exT"/>
+                <outlet property="titleView" destination="7eA-05-khh" id="0R3-wc-HdQ"/>
                 <outlet property="totalTimeLabel" destination="4R4-Nf-fhq" id="Ksv-B6-Z3L"/>
                 <outlet property="trackSlider" destination="3JQ-AW-Wwg" id="tUW-0U-zAc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -154,17 +156,17 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rz0-41-sDc" userLabel="play">
-                            <rect key="frame" x="157" y="114" width="62.5" height="62.5"/>
+                            <rect key="frame" x="156.5" y="114" width="62.5" height="62.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="rz0-41-sDc" secondAttribute="height" multiplier="1:1" id="gB6-BZ-Q2p"/>
                             </constraints>
-                            <state key="normal" image="play"/>
+                            <state key="normal" image="pause"/>
                             <connections>
                                 <action selector="playAction:" destination="-1" eventType="touchUpInside" id="RQW-tH-KDX"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCv-iB-gGP" userLabel="next">
-                            <rect key="frame" x="249.5" y="122" width="46" height="46.5"/>
+                            <rect key="frame" x="249" y="121.5" width="46" height="46.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="sCv-iB-gGP" secondAttribute="height" multiplier="1:1" id="MGM-cM-NiP"/>
                             </constraints>
@@ -174,14 +176,14 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ZE-uH-zm6" userLabel="pre">
-                            <rect key="frame" x="80.5" y="122" width="46.5" height="46.5"/>
+                            <rect key="frame" x="80" y="121.5" width="46.5" height="46.5"/>
                             <state key="normal" image="pre"/>
                             <connections>
                                 <action selector="preTrack:" destination="-1" eventType="touchUpInside" id="Yvk-Wy-U5n"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-XZ-jSS" userLabel="loop">
-                            <rect key="frame" x="321.5" y="128.5" width="33.5" height="34"/>
+                            <rect key="frame" x="321.5" y="128" width="33.5" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="ANb-XZ-jSS" secondAttribute="height" multiplier="1:1" id="pve-hp-FMy"/>
                             </constraints>
@@ -191,35 +193,21 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fR-PD-XNr" userLabel="shuffle">
-                            <rect key="frame" x="20" y="129" width="33.5" height="33.5"/>
+                            <rect key="frame" x="20" y="128.5" width="33.5" height="33.5"/>
                             <state key="normal" image="shuffle"/>
                             <connections>
                                 <action selector="shuffleAction:" destination="-1" eventType="touchUpInside" id="QYH-h2-wzl"/>
                             </connections>
                         </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNf-E6-Dyf" userLabel="shared">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNf-E6-Dyf" userLabel="shared">
                             <rect key="frame" x="22" y="11" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="FNf-E6-Dyf" secondAttribute="height" multiplier="1:1" id="EmJ-9c-95W"/>
                                 <constraint firstAttribute="height" constant="30" id="OXH-r3-3ga"/>
                             </constraints>
-                            <state key="normal" image="share"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKN-DP-Wsj" customClass="NFDownloadButton" customModule="NFDownloadButton">
-                            <rect key="frame" x="167.5" y="6" width="40.5" height="40.5"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="cKN-DP-Wsj" secondAttribute="height" multiplier="1:1" id="kst-EW-UUZ"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="initialColor">
-                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="downloadColor">
-                                    <color key="value" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
+                            <state key="normal" image="favoritePop"/>
                             <connections>
-                                <action selector="changeState:" destination="-1" eventType="touchUpInside" id="cnB-XP-7mR"/>
+                                <action selector="addFavorite:" destination="-1" eventType="touchUpInside" id="D9m-Gp-pHs"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SJ-52-6Ij">
@@ -239,6 +227,23 @@
                                 <action selector="changeValueSlider:" destination="-1" eventType="valueChanged" id="fWA-IE-R77"/>
                             </connections>
                         </slider>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKN-DP-Wsj" customClass="NFDownloadButton" customModule="NFDownloadButton">
+                            <rect key="frame" x="167" y="6" width="40.5" height="40.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="cKN-DP-Wsj" secondAttribute="height" multiplier="1:1" id="kst-EW-UUZ"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="initialColor">
+                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="downloadColor">
+                                    <color key="value" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="changeState:" destination="-1" eventType="touchUpInside" id="cnB-XP-7mR"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -297,11 +302,11 @@
     <resources>
         <image name="arrowDown" width="32" height="32"/>
         <image name="artworks" width="600" height="600"/>
+        <image name="favoritePop" width="32" height="32"/>
         <image name="loop" width="24" height="24"/>
         <image name="nextPlay" width="32" height="32"/>
-        <image name="play" width="64" height="64"/>
+        <image name="pause" width="64" height="64"/>
         <image name="pre" width="32" height="32"/>
-        <image name="share" width="32" height="32"/>
         <image name="shuffle" width="24" height="24"/>
     </resources>
 </document>

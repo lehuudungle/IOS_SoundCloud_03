@@ -36,8 +36,10 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     @IBOutlet private weak var shuffleButton: UIButton!
     @IBOutlet private weak var loopButton: UIButton!
     @IBOutlet private weak var downloadTrack: NFDownloadButton!
+    @IBOutlet private weak var playListTable: UITableView!
+    @IBOutlet private weak var titleView: UIView!
+    @IBOutlet private weak var favorite: UIButton!
     
-    @IBOutlet weak var playListTable: UITableView!
     
     var trackPlayer = TrackTool.shared.trackPlayer
     var trackMessage = TrackTool.shared.trackMessage
@@ -57,6 +59,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var fetchedRC: NSFetchedResultsController<DownloadTrackData>!
+    private var markFavorite = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +79,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         self.playListTable.delegate = self
         self.playListTable.dataSource = self
         self.updateScrollTable()
+        checkTrackInFavorite()
     }
     
     func updateStatusLoop() {
@@ -118,6 +122,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     }
     
     func updateInfoTrackDetail() {
+        markFavorite = false 
         guard let trackModel = trackMessage.trackModel else { return }
         nameTrackLabel.text = trackModel.title
         let url = URL(string: trackModel.artwork_url)
@@ -156,7 +161,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     }
     
     @IBAction func playAction(_ sender: Any) {
-        
+     
         if trackMessage.isPlaying {
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             TrackTool.shared.pauseTrack()
@@ -171,6 +176,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     @IBAction func popViewAction(_ sender: Any) {
         popupTimer.invalidate()
         TrackMessageView.shared.configView()
+        saveTrackFavorite()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -206,7 +212,8 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         actionLoop()
         TrackTool.shared.isShuffle = isShuffle
         TrackTool.shared.shuffleTrack()
-        updateInfoTrackDetail()
+
+//        updateInfoTrackDetail()
         playListTable.reloadData()
         updateScrollTable()
     }
@@ -270,6 +277,16 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         return fileURL;
     }
     
+    @IBAction func addFavorite(_ sender: Any) {
+        if markFavorite {
+            favorite.setImage(#imageLiteral(resourceName: "favoritePop"), for: .normal)
+            markFavorite = !markFavorite
+            return
+        }
+        favorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
+        markFavorite = !markFavorite
+        
+    }
 }
 // MARK: PopupControllerDelegate
 extension PopupController: PopupControllerDelegate {
@@ -294,6 +311,8 @@ extension PopupController: PopupControllerDelegate {
         
         self.currentTimeLabel.text = trackPlayer.currentItem?.currentTime().convertCMTimeString
     }
+    
+    
 }
 
 // MARK UIScrollViewDelegate
@@ -373,6 +392,80 @@ extension PopupController: UITableViewDataSource, UITableViewDelegate {
             updateInfoTrackDetail()
             updateScrollTable()
         }
+    }
+
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        let height = 60 - (scrollView.contentOffset.y + 60)
+        self.titleView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 10)
+    }
+}
+
+// MARK: favorite
+extension PopupController {
+    func checkTrackInFavorite() {
+        guard let trackModel = trackMessage.trackModel else { return }
+        let request = FavoriteTrackData.fetchRequest() as NSFetchRequest<FavoriteTrackData>
+        request.predicate = NSPredicate(format: "id CONTAINS[cd] %@", "\(trackModel.id)")
+        do {
+            let favoriteTrack: [FavoriteTrackData] = try context.fetch(request)
+            if favoriteTrack.count > 0 {
+                favorite.setImage(#imageLiteral(resourceName: "favorite"), for: .normal)
+                markFavorite = true
+                return
+            }
+            favorite.setImage(#imageLiteral(resourceName: "favoritePop"), for: .normal)
+            markFavorite = false
+        } catch let error as NSError {
+            print("error: \(error)")
+        }
+        
+    }
+    
+    func saveTrackFavorite() {
+        /*
+         if mark = false {
+         if co trong core {
+          phai xoa core
+         retunr
+         }
+         } else if mark = true {
+         if co trong core { ko lam gi}
+         else if ko co { phai save }
+         */
+        
+        let request = FavoriteTrackData.fetchRequest() as NSFetchRequest<FavoriteTrackData>
+        request.predicate = NSPredicate(format: "id CONTAINS[cd] %@", "\(trackMessage.trackModel!.id)")
+        do{
+            let favoriteTracks: [FavoriteTrackData] = try context.fetch(request)
+            if favoriteTracks.count > 0 {
+                if !markFavorite {
+                        let result = try context.fetch(request)
+                        for item in result as! [FavoriteTrackData] {
+                            print("item: \(item.title)")
+                            if item.id == trackMessage.trackModel!.id {
+                                context.delete(item)
+                            }
+                        }
+                }
+            } else {
+                if markFavorite {            
+                    let favoriteData = FavoriteTrackData(entity: FavoriteTrackData.entity(), insertInto: context)
+                    guard let trackModel = trackMessage.trackModel else {
+                        return
+                    }
+                    favoriteData.artwork_url = trackModel.artwork_url
+                    favoriteData.duration = Int64(trackModel.duration)
+                    favoriteData.id = trackModel.id
+                    favoriteData.title = trackModel.title
+                    favoriteData.genre = trackModel.genre
+                    appDelegate.saveContext()
+                }
+            }
+        }catch let error as NSError {
+            print("error: \(error)")
+        }
+       
     }
 }
 

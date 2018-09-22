@@ -22,4 +22,10 @@ class TitleCell: UITableViewCell, NibReusable {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    func fill(nameTitle: String, titleImage: UIImage, number: Int) {
+        self.nameLabel.text = nameTitle
+        self.titleImage.image = titleImage
+        self.numberTrack.text = "\(number)"
+    }
 }

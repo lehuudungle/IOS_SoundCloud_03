@@ -156,6 +156,9 @@ class TrackTool: NSObject {
     func nextTrack() {
         trackIndex += 1
         print("nextTrack: \(trackIndex)")
+        for item in tracks {
+            print("nexTracK: \(item.title)")
+        }
         setTrackMesseage(track: tracks[trackIndex])
         setupLockScreen()
         if !isShuffle {
@@ -194,16 +197,19 @@ class TrackTool: NSObject {
             trackIndex = 0
             return
         }
-        tracks = loopAllArray
         trackIndex = getTrackIndexNonShuffle()
+        tracks = loopAllArray
         print("ket qua: \(trackIndex)")
     }
     
     func getTrackIndexNonShuffle() -> Int {
         let trackShuffle = tracks[trackIndex]
+        for item in tracks {
+            print("nameTrack: \(item.title)")
+        }
         print("doi tuong next shuf: \(tracks[trackIndex].title)  in: \(trackIndex)")
         for item in loopAllArray {
-            print("trackShuff: \(trackShuffle.id) track: \(item.id)")
+            print("trackShuff: \(item.title) track: \(item.id)")
             if trackShuffle.id == item.id {
                 return  loopAllArray.index{$0 === item}!
             }
