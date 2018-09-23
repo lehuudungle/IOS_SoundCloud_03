@@ -40,6 +40,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     @IBOutlet private weak var titleView: UIView!
     @IBOutlet private weak var favorite: UIButton!
     
+    @IBOutlet weak var popUpScrollView: UIScrollView!
     
     var trackPlayer = TrackTool.shared.trackPlayer
     var trackMessage = TrackTool.shared.trackMessage
@@ -60,7 +61,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var fetchedRC: NSFetchedResultsController<DownloadTrackData>!
     private var markFavorite = false
-    
+    private var observerObject = NotificationCenter.default
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTrackDetails()
@@ -80,7 +81,30 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         self.playListTable.dataSource = self
         self.updateScrollTable()
         checkTrackInFavorite()
+        checkDownloadTime()
     }
+    
+    func checkDownloadTime() {
+        guard let trackModel = trackMessage.trackModel else { return }
+        
+        let request = DownloadTrackData.fetchRequest() as NSFetchRequest<DownloadTrackData>
+        request.predicate = NSPredicate(format: "id = %d", trackModel.id)
+        do {
+            let result = try context.fetch(request)
+            if result.count > 0 {
+                downloadTrack.downloadState = .downloaded
+            }
+        } catch let error {
+            print("delete error; \(error)")
+        }
+        if DownloadCenter.shared.positionDownload(downloadTrack: trackModel) > 0 {
+            downloadTrack.downloadState = .willDownload
+        }
+        observerObject.addObserver(self, selector: #selector(self.updatePercenDownload(notification:)), name: Notification.Name("percentDownload:\(trackModel.id)"), object: nil)
+        
+    }
+    
+    
     
     func updateStatusLoop() {
         isShuffle = TrackTool.shared.isShuffle
@@ -161,7 +185,7 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     }
     
     @IBAction func playAction(_ sender: Any) {
-     
+        
         if trackMessage.isPlaying {
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             TrackTool.shared.pauseTrack()
@@ -205,15 +229,12 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         }
     }
     
-    
     @IBAction func shuffleAction(_ sender: Any) {
         isShuffle = !isShuffle
         shuffleButton.setImage(isShuffle ? #imageLiteral(resourceName: "shuffleSelected") : #imageLiteral(resourceName: "shuffle"), for: .normal)
         actionLoop()
         TrackTool.shared.isShuffle = isShuffle
         TrackTool.shared.shuffleTrack()
-
-//        updateInfoTrackDetail()
         playListTable.reloadData()
         updateScrollTable()
     }
@@ -255,8 +276,8 @@ class PopupController: BaseUIViewcontroller, NIBBased {
         guard let trackModel = trackMessage.trackModel else { return }
         if sender.downloadState == .toDownload {
             sender.downloadState = .willDownload
-            DownloadCenter().getTrackFromServer()
-            NotificationCenter.default.addObserver(self, selector: #selector(self.updatePercenDownload(notification:)), name: Notification.Name("percentDownload"), object: nil)
+            DownloadCenter.shared.updateArrayDownById(downloadTrack: trackModel)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.updatePercenDownload(notification:)), name: Notification.Name("percentDownload:\(trackModel.id)"), object: nil)
         } else if sender.downloadState == .downloaded {
             
             sender.downloadState = .toDownload
@@ -267,6 +288,9 @@ class PopupController: BaseUIViewcontroller, NIBBased {
     @objc func updatePercenDownload(notification: Notification) {
         let userInfo = notification.userInfo as! [String: Double]
         downloadTrack.downloadPercent = CGFloat(userInfo["percentDownload"]!)
+        if downloadTrack.downloadPercent == 1.0 {
+            observerObject.removeObserver(self, name: Notification.Name("percentDownload:\(Int64(userInfo["idTrack"]!))"), object: nil)
+        }
     }
     
     func getSaveFileUrl(idTrack: String) -> URL {
@@ -318,7 +342,7 @@ extension PopupController: PopupControllerDelegate {
 // MARK UIScrollViewDelegate
 extension PopupController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
+        let pageIndex = round(popUpScrollView.contentOffset.x/view.frame.width)
         pageController.currentPage = Int(pageIndex)
     }
 }
@@ -360,6 +384,7 @@ extension PopupController {
                 default:
                     print("Not display")
                 }
+                setupTrackDetails()
                 
             }
         }
@@ -393,12 +418,6 @@ extension PopupController: UITableViewDataSource, UITableViewDelegate {
             updateScrollTable()
         }
     }
-
-    
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        let height = 60 - (scrollView.contentOffset.y + 60)
-        self.titleView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 10)
-    }
 }
 
 // MARK: favorite
@@ -423,30 +442,18 @@ extension PopupController {
     }
     
     func saveTrackFavorite() {
-        /*
-         if mark = false {
-         if co trong core {
-          phai xoa core
-         retunr
-         }
-         } else if mark = true {
-         if co trong core { ko lam gi}
-         else if ko co { phai save }
-         */
-        
         let request = FavoriteTrackData.fetchRequest() as NSFetchRequest<FavoriteTrackData>
         request.predicate = NSPredicate(format: "id CONTAINS[cd] %@", "\(trackMessage.trackModel!.id)")
         do{
             let favoriteTracks: [FavoriteTrackData] = try context.fetch(request)
             if favoriteTracks.count > 0 {
                 if !markFavorite {
-                        let result = try context.fetch(request)
-                        for item in result as! [FavoriteTrackData] {
-                            print("item: \(item.title)")
-                            if item.id == trackMessage.trackModel!.id {
-                                context.delete(item)
-                            }
+                    let result = try context.fetch(request)
+                    for item in result {
+                        if item.id == trackMessage.trackModel!.id {
+                            context.delete(item)
                         }
+                    }
                 }
             } else {
                 if markFavorite {            
@@ -462,10 +469,10 @@ extension PopupController {
                     appDelegate.saveContext()
                 }
             }
-        }catch let error as NSError {
+        } catch let error  {
             print("error: \(error)")
         }
-       
+        
     }
 }
 

@@ -21,9 +21,10 @@
                 <outlet property="loopButton" destination="ANb-XZ-jSS" id="Bbm-bi-F24"/>
                 <outlet property="nameTrackLabel" destination="6S3-fX-2z5" id="5HO-ol-z6Q"/>
                 <outlet property="nextButton" destination="sCv-iB-gGP" id="I8O-fE-EKn"/>
-                <outlet property="pageController" destination="LSR-C7-NNN" id="4rs-B1-ele"/>
+                <outlet property="pageController" destination="Qh8-3d-9Am" id="xpS-vg-F1d"/>
                 <outlet property="playListTable" destination="h5m-OU-eIw" id="kUF-qq-Fb2"/>
                 <outlet property="playPauseButton" destination="rz0-41-sDc" id="R8f-HS-GI9"/>
+                <outlet property="popUpScrollView" destination="k93-ip-cbD" id="Xha-K9-bjW"/>
                 <outlet property="preButton" destination="9ZE-uH-zm6" id="Vkg-sD-CCq"/>
                 <outlet property="scrollView" destination="k93-ip-cbD" id="nDP-4R-WBz"/>
                 <outlet property="shuffleButton" destination="7fR-PD-XNr" id="7kB-xB-exT"/>
@@ -49,18 +50,18 @@
                                 <action selector="popViewAction:" destination="-1" eventType="touchUpInside" id="TsQ-D2-uLK"/>
                             </connections>
                         </button>
-                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="LSR-C7-NNN">
-                            <rect key="frame" x="176" y="11.5" width="23" height="37"/>
+                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="Qh8-3d-9Am">
+                            <rect key="frame" x="176" y="12" width="23" height="37"/>
                         </pageControl>
                     </subviews>
                     <color key="backgroundColor" red="0.18823529411764706" green="0.20392156862745098" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="iBw-0K-adb" firstAttribute="centerY" secondItem="7eA-05-khh" secondAttribute="centerY" id="Chv-yj-Heh"/>
-                        <constraint firstItem="LSR-C7-NNN" firstAttribute="centerX" secondItem="7eA-05-khh" secondAttribute="centerX" id="Exs-1J-eHA"/>
                         <constraint firstItem="iBw-0K-adb" firstAttribute="height" secondItem="7eA-05-khh" secondAttribute="height" multiplier="2:3" id="IhU-zu-87S"/>
                         <constraint firstAttribute="height" constant="60" id="Ira-K3-F4W"/>
                         <constraint firstItem="iBw-0K-adb" firstAttribute="leading" secondItem="7eA-05-khh" secondAttribute="leading" constant="15" id="XOe-D3-MHQ"/>
-                        <constraint firstItem="LSR-C7-NNN" firstAttribute="centerY" secondItem="7eA-05-khh" secondAttribute="centerY" id="azg-7z-qAr"/>
+                        <constraint firstItem="Qh8-3d-9Am" firstAttribute="centerX" secondItem="7eA-05-khh" secondAttribute="centerX" id="nrr-8I-wEc"/>
+                        <constraint firstItem="Qh8-3d-9Am" firstAttribute="centerY" secondItem="7eA-05-khh" secondAttribute="centerY" id="sSc-Pw-zpP"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEo-2m-muL">

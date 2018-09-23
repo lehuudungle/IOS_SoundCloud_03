@@ -28,6 +28,13 @@ class SearchController: BaseUIViewcontroller, NIBBased, AlertViewController {
         super.viewDidLoad()
         tableView.register(cellType: TrackCell.self)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !TrackMessageView.shared.view.isHidden {
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0)
+        }
+    }
 }
 
 extension SearchController: UITableViewDelegate, UITableViewDataSource {
@@ -68,8 +75,6 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        print("workItem: \(self.workItem)")
-        print("workItemCancel: \(self.workItem?.cancel())")
         self.workItem?.cancel()
         let workItem = DispatchWorkItem { [weak self] in
             print("workItem dc goi")

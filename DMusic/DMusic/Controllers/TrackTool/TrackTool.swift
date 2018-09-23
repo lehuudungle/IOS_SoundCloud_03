@@ -116,8 +116,6 @@ class TrackTool: NSObject {
     }
     
     @objc func playerDidFinishPlaying() {
-        print("ket thuc bai hat: \(statusLoop)")
-        print("title bai ket thuc: \(trackMessage.trackModel?.title)")
         trackMessage.isPlaying = false
         switch statusLoop {
         case .LoopAll:
@@ -125,8 +123,6 @@ class TrackTool: NSObject {
         case .LoopOne:
             setTrackMesseage(track: tracks[trackIndex])
         case .Shuffle:
-//            trackIndex = Int(arc4random_uniform(UInt32(tracks.count)))
-//            setTrackMesseage(track: tracks[trackIndex])
             nextTrack()
             print("trackIndexShuffle: \(trackIndex)")
         default:
@@ -188,7 +184,7 @@ class TrackTool: NSObject {
         if isShuffle {
             shuffled.append(tracks[trackIndex])
             tracks.remove(at: trackIndex)
-            for i in 0..<tracks.count {
+            for _ in 0..<tracks.count {
                 let random = Int(arc4random_uniform(UInt32(tracks.count)))
                 shuffled.append(tracks[random])
                 tracks.remove(at: random)
@@ -261,7 +257,6 @@ extension TrackTool {
     func setupLockScreen() {
         guard let trackModel = trackMessage.trackModel else { return }
         let title = trackModel.title
-        let generic = trackModel.genre
         let trackImageView = UIImageView()
         let url = URL(string: trackModel.artwork_url)
         trackImageView.sd_setShowActivityIndicatorView(true)

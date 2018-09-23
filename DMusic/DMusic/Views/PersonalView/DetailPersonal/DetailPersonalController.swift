@@ -28,6 +28,7 @@ class DetailPersonalController: BaseUIViewcontroller, NIBBased {
     private var fetchedRC: NSFetchedResultsController<DownloadTrackData>!
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var positionview = -1
+    let fileManager = FileManager.default
     
     
     override func viewDidLoad() {
@@ -41,6 +42,13 @@ class DetailPersonalController: BaseUIViewcontroller, NIBBased {
             loadFavoriteData()
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !TrackMessageView.shared.view.isHidden {
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0)
+        }
     }
     
     func loadDownloadData() {
@@ -149,27 +157,32 @@ extension DetailPersonalController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             if positionview == 0 {
                 let request = DownloadTrackData.fetchRequest() as NSFetchRequest<DownloadTrackData>
-                request.predicate = NSPredicate(format: "id = %d", downloadTracks[indexPath.row].track.id)
+                print("id delete: \(downloadTracks[indexPath.row].track.id)")
+                request.predicate = NSPredicate(format: "id = %@", "\(downloadTracks[indexPath.row].track.id)")
                 do {
                     let result = try context.fetch(request)
                     let trackModel = downloadTracks[indexPath.row]
-                    for item in result as! [DownloadTrackData] {
+                    for item in result {
                         print("item: \(item.id)")
                         if item.id == trackModel.track.id {
                             context.delete(item)
+                            try? fileManager.removeItem(at: URL(string: item.url_local!)!)
                         }
                     }
+
+                    try? context.save()
+                    downloadTracks.remove(at: indexPath.row)
                 } catch let error {
                     print("delete error; \(error)")
                 }
-                downloadTracks.remove(at: indexPath.row)
+                
             } else if positionview == 1 {
                 let request = FavoriteTrackData.fetchRequest() as NSFetchRequest<FavoriteTrackData>
                 request.predicate = NSPredicate(format: "id = %d", favoriteTracks[indexPath.row].id)
                 do {
                     let result = try context.fetch(request)
                     let trackModel = favoriteTracks[indexPath.row]
-                    for item in result as! [FavoriteTrackData] {
+                    for item in result {
                         print("item: \(item.id)")
                         if item.id == trackModel.id {
                             context.delete(item)
@@ -178,6 +191,7 @@ extension DetailPersonalController: UITableViewDataSource, UITableViewDelegate {
                 } catch let error {
                     print("delete error; \(error)")
                 }
+                try? context.save()
                 favoriteTracks.remove(at: indexPath.row)
             }
             

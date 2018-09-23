@@ -52,6 +52,9 @@ class HomeController: BaseUIViewcontroller, NIBBased, AlertViewController {
         super.viewWillAppear(animated)
         self.title = HomeController.Constant.titleNavigation
         TrackTool.shared.isOnline = true
+        if !TrackMessageView.shared.view.isHidden {
+            tracksTableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

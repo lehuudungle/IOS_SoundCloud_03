@@ -34,6 +34,13 @@ class TracksByGenericController: BaseUIViewcontroller, AlertViewController, NIBB
         configView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !TrackMessageView.shared.view.isHidden {
+            tracksTable.contentInset = UIEdgeInsetsMake(0, 0, 60, 0)
+        }
+    }
+    
     func configView() {
         genericTrackLabel.text = linkURL.titleGeneric
         tracksTable.register(cellType: TrackCell.self)

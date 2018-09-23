@@ -14,7 +14,7 @@ class PersonalController: BaseUIViewcontroller, NIBBased {
     @IBOutlet private weak var personalTable: UITableView!
     
     var titleImage = [#imageLiteral(resourceName: "download"), #imageLiteral(resourceName: "favorite")]
-    var nameCell = ["Download", "Favorite]"]
+    var nameCell = ["Download", "Favorite"]
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +38,6 @@ extension PersonalController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let request = DownloadTrackData.fetchRequest() as NSFetchRequest<DownloadTrackData>
             do {
-//                cell.titleImage.image = titleImage[indexPath.row]
-//                cell.nameLabel.text = nameCell[indexPath.row]
-//                if indexPath.row == 0 {
-//                    let result = try context.fetch(request)
-//                    cell.numberTrack.text = "\(result.count)"
-//                }
                 let result = try context.fetch(request)
                 cell.fill(nameTitle: nameCell[indexPath.row], titleImage: titleImage[indexPath.row], number: result.count)
                 

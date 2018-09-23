@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -39,7 +39,7 @@
                             </constraints>
                         </imageView>
                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ru-wY-oWT">
-                            <rect key="frame" x="0.0" y="0.0" width="410" height="2"/>
+                            <rect key="frame" x="0.0" y="0.0" width="415" height="2"/>
                             <color key="progressTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </progressView>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbP-UL-bFc" userLabel="next">
@@ -89,7 +89,7 @@
                     <constraints>
                         <constraint firstItem="8Ru-wY-oWT" firstAttribute="top" secondItem="b2Q-TH-Vuz" secondAttribute="top" id="1fZ-S5-TKN"/>
                         <constraint firstItem="vyo-dJ-c53" firstAttribute="leading" secondItem="b2Q-TH-Vuz" secondAttribute="leading" constant="5" id="4NT-ai-R4e"/>
-                        <constraint firstAttribute="trailing" secondItem="8Ru-wY-oWT" secondAttribute="trailing" constant="5" id="CqX-Rv-rux"/>
+                        <constraint firstAttribute="trailing" secondItem="8Ru-wY-oWT" secondAttribute="trailing" id="CqX-Rv-rux"/>
                         <constraint firstItem="0bV-1v-8cH" firstAttribute="height" secondItem="b2Q-TH-Vuz" secondAttribute="height" multiplier="3:4" id="DKS-pr-X0d"/>
                         <constraint firstItem="5Sl-D6-nU6" firstAttribute="centerY" secondItem="b2Q-TH-Vuz" secondAttribute="centerY" id="E1a-cq-14M"/>
                         <constraint firstItem="8Ru-wY-oWT" firstAttribute="leading" secondItem="b2Q-TH-Vuz" secondAttribute="leading" id="FBf-f4-RQR"/>
@@ -126,7 +126,7 @@
         </view>
     </objects>
     <resources>
-        <image name="artworks" width="300" height="300"/>
+        <image name="artworks" width="600" height="600"/>
         <image name="nextPlay" width="32" height="32"/>
         <image name="pause" width="64" height="64"/>
         <image name="pre" width="32" height="32"/>
